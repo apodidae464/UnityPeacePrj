@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static bool isInObject = false;
     public Transform player;
     public float speed = 5.0f;
     private bool touchStart = false;
@@ -14,18 +14,33 @@ public class PlayerMovement : MonoBehaviour
     public Transform outerCircle;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if (hit.collider.gameObject.tag == "Player")
+                    isInObject = true;
+                if (hit.collider.gameObject.tag == "Customer")
+                    isInObject = true;
+                if (hit.collider.gameObject.tag == "Popup")
+                    isInObject = true;
+            }
+        }
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)
         {
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
 
-            circle.transform.position = pointA * -1;
+            circle.transform.position = pointA * 1;
             outerCircle.transform.position = pointA * 1;
             circle.GetComponent<SpriteRenderer>().enabled = true;
             outerCircle.GetComponent<SpriteRenderer>().enabled = true;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)
         {
             touchStart = true;
             pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
@@ -34,8 +49,12 @@ public class PlayerMovement : MonoBehaviour
         {
             touchStart = false;
         }
-
+        if (Input.touchCount == 0)
+        {
+            isInObject = false;
+        }
     }
+
     private void FixedUpdate()
     {
         if (touchStart)
@@ -51,9 +70,9 @@ public class PlayerMovement : MonoBehaviour
             circle.GetComponent<SpriteRenderer>().enabled = false;
             outerCircle.GetComponent<SpriteRenderer>().enabled = false;
         }
-
     }
-    void moveCharacter(Vector2 direction)
+
+    private void moveCharacter(Vector2 direction)
     {
         player.Translate(direction * speed * Time.deltaTime);
     }
