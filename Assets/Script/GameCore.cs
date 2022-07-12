@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameCore : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
+    public List<GameObject> _FoodList = new List<GameObject>();
+    public List<GameObject> _Customer = new List<GameObject>();
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
+
+
+    public FoodData foodData;
+
+
 
     public void ExitProgram()
     {

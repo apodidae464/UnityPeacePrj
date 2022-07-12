@@ -2,11 +2,13 @@
 
 public class CustomerPopup : MonoBehaviour
 {
-    private void Start()
-    {
-    }
+    private FoodData.FoodType _foodType;
 
-    private void Update()
+    public void SetData(FoodData.FoodType foodType)
     {
+        _foodType = foodType;
+        GetComponent<SpriteRenderer>().sprite = _foodType.image;
+        this.transform.GetChild(0).gameObject.GetComponent < TextMesh >().text = _foodType.name;
+
     }
 }
