@@ -16,21 +16,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Input.touchCount > 0)
             {
-                if (hit.collider.gameObject.tag == "Player")
-                    isInObject = true;
-                if (hit.collider.gameObject.tag == "Customer")
-                    isInObject = true;
-                if (hit.collider.gameObject.tag == "Popup")
-                    isInObject = true;
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                {
+                    if (hit.collider.gameObject.tag == "Player")
+                        isInObject = true;
+                    if (hit.collider.gameObject.tag == "Customer")
+                        isInObject = true;
+                    if (hit.collider.gameObject.tag == "Popup")
+                        isInObject = true;
+                }
             }
         }
+        
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)
         {
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
