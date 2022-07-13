@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameCore : MonoBehaviour
 {
+
+    private Transform taget;
+
+    [SerializeField] private float smoothSpeed;
     public List<GameObject> _FoodPopUpList = new List<GameObject>();
     public List<GameObject> _CustomerList = new List<GameObject>();
     public List<Table> _tableList = new List<Table>();
@@ -25,12 +29,13 @@ public class GameCore : MonoBehaviour
     }
     void Start()
     {
+        taget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         StartCoroutine(CustomerWave());
     }
     void Update()
     {
-        
+        transform.position = Vector3.Lerp(transform.position,new Vector3(taget.position.x, taget.position.y, transform.position.z),smoothSpeed * Time.deltaTime);
     }
     public void ExitProgram()
     {
