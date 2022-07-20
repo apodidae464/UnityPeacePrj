@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GameCore : MonoBehaviour
 {
-
     private Transform taget;
 
     [SerializeField] private float smoothSpeed;
-    public List<GameObject> _FoodPopUpList = new List<GameObject>();
-    public List<GameObject> _CustomerList = new List<GameObject>();
-    public List<Table> _tableList = new List<Table>();
-    
+
+    public List<GameObject> _FoodPopUpList;
+    public List<GameObject> _FoodPopUpUsedList;
+
+    public List<GameObject> _CustomerList;
+    static public List<Table> _tableList = new List<Table>();
 
     public GameObject _CustomerPopup;
     public GameObject _Customer;
@@ -22,70 +23,84 @@ public class GameCore : MonoBehaviour
     private Vector2 screenBounds;
 
 
+    //private GameCore pool;
+
     private void Awake()
     {
+        _FoodPopUpList = new List<GameObject>();
+        _FoodPopUpUsedList = new List<GameObject>();
+        _CustomerList = new List<GameObject>();
+
         LoadFoodDatatoList();
         LoadTabletoList();
     }
-    void Start()
+
+    private void Start()
     {
-        taget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        taget = GameObject.FindGameObjectWithTag(AllTag.Player).GetComponent<Transform>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         StartCoroutine(CustomerWave());
+
+        //pool = transform.parent.GetComponent<GameCore>();
     }
-    void Update()
+
+    private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position,new Vector3(taget.position.x, taget.position.y, transform.position.z),smoothSpeed * Time.deltaTime);
+        //Tranform.position for camera
+        transform.position = Vector3.Lerp(transform.position, new Vector3(taget.position.x, taget.position.y, transform.position.z), smoothSpeed * Time.deltaTime);
     }
+
     public void ExitProgram()
     {
         Application.Quit();
     }
-    void LoadFoodDatatoList()
+
+    private void LoadFoodDatatoList()
     {
-        foreach(var foodType in foodData.FoodTypeList)
+        foreach (var foodType in foodData.FoodTypeList)
         {
             var foodTypeData = foodData.FoodTypeList.Find(data => data == foodType);
             _FoodPopUpList.Add(Instantiate(_CustomerPopup));
+            _FoodPopUpList[_FoodPopUpList.Count - 1].SetActive(false);
             _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<CustomerPopup>().SetData(foodTypeData);
             _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<Transform>().position = new Vector3(Screen.width, Screen.height, 0f);
         }
     }
 
-    void LoadTabletoList()
+    public GameObject GetFoodPopup(int toltalFree)
     {
-        Table[] tables = new Table[7];
-        for(int i = 0; i < 7; i++)
-        {
-            tables[i] = new Table();
-        }
-        tables[0].position.Set(4.44f, 0.05f);
-        tables[0].isFull = false;
-
-        tables[1].position.Set(-1.8f, -0.025f);
-        tables[1].isFull = false;
-
-        tables[2].position.Set(0.06f, -0.17f);
-        tables[2].isFull = false;
-
-        tables[3].position.Set(0.93f, -0.07f);
-        tables[3].isFull = false;
-
-        tables[4].position.Set(1.99f, -0.15f);
-        tables[4].isFull = false;
-
-        tables[5].position.Set(3.67f, 0.36f);
-        tables[5].isFull = false;
-
-        tables[6].position.Set(5.0f, 0.36f);
-        tables[6].isFull = false;
-
-        foreach (var table in tables)
-        {
-            _tableList.Add(table);
-        }
+        GameObject g = _FoodPopUpList[toltalFree];
+        g.SetActive(true);
+        _FoodPopUpUsedList.Add(g);
+        return g;
     }
 
+    public void ReturnFoodPopup(GameObject obj)
+    {
+        obj.SetActive(false);
+        _FoodPopUpUsedList.Remove(obj);
+        _FoodPopUpList.Add(obj);
+    }
+
+    IEnumerator ReturnFoodPopupAfterTime()
+    {
+        yield return new WaitForSeconds(3f);
+        //pool.ReturnFoodPopup(gameObject);
+
+    }
+
+    public void ReturnObject(GameObject obj)
+    {
+        Debug.Assert(_FoodPopUpUsedList.Contains(obj));
+        obj.SetActive(false);
+        _FoodPopUpUsedList.Remove(obj);
+        _FoodPopUpList.Add(obj);
+    }
+
+    private void LoadTabletoList()
+    {
+        
+    }
 
     private void spawnCustomer()
     {
@@ -99,20 +114,29 @@ public class GameCore : MonoBehaviour
         {
             return;
         }
-        int randomTable = Random.Range(0, 6);
-        if(_tableList[randomTable].isFull == true)
-        {
 
-        }
-        else
+        bool isCreate = true;
+        do
         {
-            GameObject a = Instantiate(_Customer) as GameObject;
-            a.transform.position = _tableList[randomTable].position;
-            _CustomerList.Add(a);
-            _tableList[randomTable].isFull = true;
+            int randomTable = Random.Range(0, _tableList.Count);
+            if (_tableList[randomTable].isFull != true)
+            {
+                GameObject a = Instantiate(_Customer) as GameObject;
+                a.transform.position = _tableList[randomTable].position;
+                _CustomerList.Add(a);
+                _tableList[randomTable].isFull = true;
+                isCreate = true;
+            }
+            else
+            {
+                isCreate = false;
+            }
         }
+        while (!isCreate);
+        
     }
-    IEnumerator CustomerWave()
+
+    private IEnumerator CustomerWave()
     {
         while (true)
         {
