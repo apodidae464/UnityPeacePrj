@@ -72,7 +72,7 @@ public class GameCore : MonoBehaviour
         {
             var foodTypeData = foodData.FoodTypeList.Find(data => data == foodType);
             _FoodPopUpList.Add(Instantiate(_CustomerPopup));
-            _FoodPopUpList[_FoodPopUpList.Count - 1].name = _FoodPopUpList[_FoodPopUpList.Count - 1].name + (_FoodPopUpList.Count).ToString();
+            _FoodPopUpList[_FoodPopUpList.Count - 1].name = _FoodPopUpList[_FoodPopUpList.Count - 1].name /*+ (_FoodPopUpList.Count).ToString()*/;
             _FoodPopUpList[_FoodPopUpList.Count - 1].SetActive(false);
             _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<CustomerPopup>().SetData(foodTypeData);
             _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<Transform>().position = new Vector3(Screen.width, Screen.height, 0f);
@@ -127,7 +127,7 @@ public class GameCore : MonoBehaviour
                 if (_tableList[randomTable].isFull != true)
                 {
                     GameObject a = Instantiate(_Customer) as GameObject;
-                    a.name = a.name + (_CustomerList.Count + 1).ToString();
+                    a.name = a.name /*+ (_CustomerList.Count + 1).ToString()*/;
                     a.transform.position = _tableList[randomTable].transform.GetChild(0).gameObject.transform.position;
                     _CustomerList.Add(a);
                     _tableList[randomTable].isFull = true;

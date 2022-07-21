@@ -5,21 +5,26 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
 
-     GameObject OrderPopup;
+
+    private FoodData.FoodType TypeFoodOrder = new FoodData.FoodType();
 
     private void Awake()
     {
-        int randomOrderPopup = Random.Range(0, GameCore._FoodPopUpList.Count);
-        OrderPopup = Instantiate(GameCore._FoodPopUpList[randomOrderPopup]) as GameObject;
-        OrderPopup.transform.SetParent(this.transform);
-        OrderPopup.transform.position = this.transform.Find("FirstPopup").transform.position;
-        OrderPopup.SetActive(false);
+        
     }
 
     void Start()
     {
         this.transform.Find("FirstPopup").transform.gameObject.SetActive(false);
         StartCoroutine(ShowFirstPopupCoroutine());
+
+        int randomOrderPopup = Random.Range(0, GameCore._FoodPopUpList.Count);
+        GameObject OrderPopup = Instantiate(GameCore._FoodPopUpList[randomOrderPopup]) as GameObject;
+        OrderPopup.transform.SetParent(this.transform);
+        OrderPopup.transform.position = this.transform.Find("FirstPopup").transform.position;
+        OrderPopup.SetActive(false);
+
+        TypeFoodOrder.name = GameCore._FoodPopUpList[randomOrderPopup].name;
     }
 
     void Update()
@@ -35,7 +40,7 @@ public class Customer : MonoBehaviour
                     if (hit.collider.gameObject.tag == AllTag.FirstPopup) {
                         Debug.Log("I'm hitting first popup");
                         hit.collider.gameObject.transform.parent.transform.gameObject.SetActive(false);
-                        OrderPopup.SetActive(true);
+                        hit.collider.gameObject.transform.parent.transform.gameObject.transform.transform.parent.Find("Popup(Clone)(Clone)").transform.gameObject.SetActive(true);
                     }
                         
                 }

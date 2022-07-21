@@ -9,6 +9,7 @@ TagManager:
   - CookingArea
   - Cleaner
   - FirstPopup
+  - CookingInventory
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: Collider Debug
     uniqueID: 1139581955
+    locked: 0
+  - name: UI
+    uniqueID: 857770571
     locked: 0
