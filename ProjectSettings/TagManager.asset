@@ -7,6 +7,8 @@ TagManager:
   - Customer
   - Popup
   - CookingArea
+  - Cleaner
+  - FirstPopup
   layers:
   - Default
   - TransparentFX

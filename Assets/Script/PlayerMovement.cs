@@ -24,13 +24,21 @@ public class PlayerMovement : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
                 if (hit != null && hit.collider != null)
                 {
-                    Debug.Log("I'm hitting " + hit.collider.name);
-                    if (hit.collider.gameObject.tag == "Player")
+                    if (hit.collider.gameObject.tag == AllTag.Player)
+                    {
+                        Debug.Log("I'm hitting Player");
                         isInObject = true;
-                    if (hit.collider.gameObject.tag == "Customer")
+                    }
+                    if (hit.collider.gameObject.tag == AllTag.Customer)
+                    {
+                        Debug.Log("I'm hitting Custommer");
                         isInObject = true;
-                    if (hit.collider.gameObject.tag == "Popup")
+                    }
+                    if (hit.collider.gameObject.tag == AllTag.Popup)
+                    {
+                        Debug.Log("I'm hitting popup");
                         isInObject = true;
+                    }
                 }
             }
         }
