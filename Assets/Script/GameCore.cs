@@ -116,13 +116,14 @@ public class GameCore : MonoBehaviour
         }
 
         bool isCreate = true;
+
         do
         {
             int randomTable = Random.Range(0, _tableList.Count);
             if (_tableList[randomTable].isFull != true)
             {
                 GameObject a = Instantiate(_Customer) as GameObject;
-                a.transform.position = _tableList[randomTable].position;
+                a.transform.position = _tableList[randomTable].transform.GetChild(0).gameObject.transform.position;
                 _CustomerList.Add(a);
                 _tableList[randomTable].isFull = true;
                 isCreate = true;
