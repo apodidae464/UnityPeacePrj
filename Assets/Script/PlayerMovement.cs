@@ -20,11 +20,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+                if (hit != null && hit.collider != null)
                 {
+                    Debug.Log("I'm hitting " + hit.collider.name);
                     if (hit.collider.gameObject.tag == "Player")
                         isInObject = true;
                     if (hit.collider.gameObject.tag == "Customer")

@@ -13,15 +13,13 @@ MonoBehaviour:
   m_Name: FoodData
   m_EditorClassIdentifier: 
   FoodTypeList:
-  - name: Bacon
-    image: {fileID: 21300000, guid: 3fff6645d21a8254aa84bf26a099a557, type: 3}
-  - name: ApplePie
-    image: {fileID: 21300000, guid: cedd86e927e8bd9458d2f24ae3708e48, type: 3}
-  - name: Bread
-    image: {fileID: 21300000, guid: 6302985403620f44daa18ccb57792d6e, type: 3}
-  - name: Bun
-    image: {fileID: 21300000, guid: e3f7c89d7054def4b841354506181276, type: 3}
-  - name: Burger
-    image: {fileID: 21300000, guid: 8168c0f0b352e9345983432d82fbd683, type: 3}
-  - name: Burrito
-    image: {fileID: 21300000, guid: d33a99a058fe0f9408827e971fb7f7ad, type: 3}
+  - name: Cheese
+    image: {fileID: 21300000, guid: 3b1bbebaf375cb548a116e121e952f74, type: 3}
+  - name: Banana
+    image: {fileID: 21300000, guid: a548ac627c25466438f94d8a42b6a510, type: 3}
+  - name: Sauce
+    image: {fileID: 21300000, guid: d75f9aacb32763f4693a940e7c48962a, type: 3}
+  - name: Egg
+    image: {fileID: 21300000, guid: 6b94b7dab40a1964798fe4331607ca5f, type: 3}
+  - name: EggWhite
+    image: {fileID: 21300000, guid: 3bcb3d08f4a6f944290890cde3597096, type: 3}

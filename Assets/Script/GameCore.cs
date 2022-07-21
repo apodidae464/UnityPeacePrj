@@ -11,13 +11,15 @@ public class GameCore : MonoBehaviour
     public List<GameObject> _FoodPopUpList;
     public List<GameObject> _FoodPopUpUsedList;
 
-    public List<GameObject> _CustomerList;
+    static public List<GameObject> _CustomerList;
     static public List<Table> _tableList = new List<Table>();
 
     public GameObject _CustomerPopup;
     public GameObject _Customer;
 
     public FoodData foodData;
+
+    public bool isListTableFull = false;
 
     public float respawnTime = 2.0f;
     private Vector2 screenBounds;
@@ -30,9 +32,8 @@ public class GameCore : MonoBehaviour
         _FoodPopUpList = new List<GameObject>();
         _FoodPopUpUsedList = new List<GameObject>();
         _CustomerList = new List<GameObject>();
-
+        isListTableFull = false;
         LoadFoodDatatoList();
-        LoadTabletoList();
     }
 
     private void Start()
@@ -46,8 +47,18 @@ public class GameCore : MonoBehaviour
 
     private void Update()
     {
+
+        if (Player.Instance.MoodIndex >= 7.5f)
+            respawnTime = 1.5f;
+
+        if (Player.Instance.MoodIndex <= 3.5f)
+            respawnTime = 2.5f;
+
+
         //Tranform.position for camera
         transform.position = Vector3.Lerp(transform.position, new Vector3(taget.position.x, taget.position.y, transform.position.z), smoothSpeed * Time.deltaTime);
+
+
     }
 
     public void ExitProgram()
@@ -97,43 +108,36 @@ public class GameCore : MonoBehaviour
         _FoodPopUpList.Add(obj);
     }
 
-    private void LoadTabletoList()
-    {
-        
-    }
+    
 
     private void spawnCustomer()
     {
-        if (Player.Instance.MoodIndex >= 7.5f)
-            respawnTime = 1.5f;
-
-        if (Player.Instance.MoodIndex <= 3.5f)
-            respawnTime = 2.5f;
-
-        if (_CustomerList.Count >= 7)
-        {
-            return;
-        }
 
         bool isCreate = true;
 
-        do
+
+        if (_CustomerList.Count == _tableList.Count) isListTableFull = true;
+
+        if(isListTableFull == false)
         {
-            int randomTable = Random.Range(0, _tableList.Count);
-            if (_tableList[randomTable].isFull != true)
+            do
             {
-                GameObject a = Instantiate(_Customer) as GameObject;
-                a.transform.position = _tableList[randomTable].transform.GetChild(0).gameObject.transform.position;
-                _CustomerList.Add(a);
-                _tableList[randomTable].isFull = true;
-                isCreate = true;
+                int randomTable = Random.Range(0, _tableList.Count);
+                if (_tableList[randomTable].isFull != true)
+                {
+                    GameObject a = Instantiate(_Customer) as GameObject;
+                    a.transform.position = _tableList[randomTable].transform.GetChild(0).gameObject.transform.position;
+                    _CustomerList.Add(a);
+                    _tableList[randomTable].isFull = true;
+                    isCreate = true;
+                }
+                else
+                {
+                    isCreate = false;
+                }
             }
-            else
-            {
-                isCreate = false;
-            }
+            while (!isCreate);
         }
-        while (!isCreate);
         
     }
 

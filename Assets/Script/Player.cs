@@ -7,14 +7,20 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     //How to get method in Player
     //Player.Instance.MethodName(Param1,Param2);
 
     //Attribute of Player
-    private bool isTakeOrder = false;
 
     private bool isInGreenArea = false;
     private bool isInRedArea = false;
