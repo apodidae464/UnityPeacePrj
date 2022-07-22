@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameCore : MonoBehaviour
 {
+
+    public static GameCore Instance { get; private set; }
+
     private Transform taget;
 
     [SerializeField] private float smoothSpeed;
 
-    static public List<GameObject> _FoodPopUpList;
+    public List<GameObject> _FoodPopUpList;
     public List<GameObject> _FoodPopUpUsedList;
 
-    static public List<GameObject> _CustomerList;
-    static public List<Table> _tableList = new List<Table>();
+    public List<GameObject> _CustomerList;
+    public List<Table> _tableList = new List<Table>();
 
     public GameObject _CustomerPopup;
     public GameObject _Customer;
@@ -29,6 +33,15 @@ public class GameCore : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         _FoodPopUpList = new List<GameObject>();
         _FoodPopUpUsedList = new List<GameObject>();
         _CustomerList = new List<GameObject>();
@@ -48,11 +61,28 @@ public class GameCore : MonoBehaviour
     private void Update()
     {
 
-        if (Player.Instance.MoodIndex >= 7.5f)
-            respawnTime = 1.5f;
-
-        if (Player.Instance.MoodIndex <= 3.5f)
+        if (Player.Instance.MoodIndex <= 100.0f)
+            respawnTime = 4.0f;
+        if (Player.Instance.MoodIndex <= 90.0f)
+            respawnTime = 3.0f;
+        if (Player.Instance.MoodIndex <= 80.0f)
+            respawnTime = 2.0f;
+        if (Player.Instance.MoodIndex <= 70.0f)
             respawnTime = 2.5f;
+        if (Player.Instance.MoodIndex <= 60.0f)
+            respawnTime = 2.3f;
+        if (Player.Instance.MoodIndex <= 50.0f)
+            respawnTime = 1.5f;
+        if (Player.Instance.MoodIndex <= 40.0f)
+            respawnTime = 1.5f;
+        if (Player.Instance.MoodIndex <= 30.0f)
+            respawnTime = 1.0f;
+
+        if(_CustomerList.Count > 0)
+        {
+            Player.Instance.MoodIndex -= (float)_CustomerList.Count * 0.5f;
+        }
+
 
 
         //Tranform.position for camera
@@ -61,6 +91,10 @@ public class GameCore : MonoBehaviour
 
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene("Start");
+    }
     public void ExitProgram()
     {
         Application.Quit();
@@ -117,9 +151,11 @@ public class GameCore : MonoBehaviour
         bool isCreate = true;
 
 
-        if (_CustomerList.Count == _tableList.Count) isListTableFull = true;
+        if (_CustomerList.Count >= _tableList.Count) isListTableFull = true;
+        if(_CustomerList.Count < _tableList.Count)
+            isListTableFull = false;
 
-        if(isListTableFull == false)
+        if (isListTableFull == false)
         {
             do
             {

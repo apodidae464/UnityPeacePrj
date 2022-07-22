@@ -29,17 +29,17 @@ public class Player : MonoBehaviour
     private bool isInRedArea = false;
 
     public float range = 1.5f;
-    public float MoodIndex = 5.0f;    //Max = 10, Min = 0
+    public float MoodIndex = 100.0f;    //Max = 100, Min = 0
 
     //Method
     public void MoodIndexIncrease()
     {
-        MoodIndex += 0.2f;
+        MoodIndex += 1f;
     }
 
     public void MoodIndexDecrease()
     {
-        MoodIndex -= 0.2f;
+        MoodIndex -= 1f;
     }
 
     private void OnDrawGizmosSelected()
@@ -58,9 +58,10 @@ public class Player : MonoBehaviour
         {
             MoodIndexIncrease();
         }
-        if (MoodIndex >= 10)
+        if (MoodIndex <= 0)
         {
             //GameOver BLOOM!
+            //GameCore.Instance.Restart();
         }
 
         
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[0].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = this.transform.Find("Inventory1").transform.position;
+                Destroy(g.transform.GetComponent<BoxCollider2D>());
                 break;
             case 1:
                 g = Instantiate(food);
@@ -85,6 +87,7 @@ public class Player : MonoBehaviour
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[1].transform.SetParent(this.transform);
                 InventoryPlayerList[1].transform.position = this.transform.Find("Inventory2").transform.position;
+                Destroy(g.transform.GetComponent<BoxCollider2D>());
                 break;
             default:
                 break;

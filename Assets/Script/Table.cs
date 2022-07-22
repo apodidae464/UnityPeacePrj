@@ -10,12 +10,13 @@ public class Table : MonoBehaviour
 
     public void Awake()
     {
-        GameCore._tableList.Add(this);
+        //GameCore.Instance._tableList.Add(this);
     }
 
     void Start()
     {
         position = new Vector2(0.0f, 0.0f);
+        GameCore.Instance._tableList.Add(this);
     }
 
     private void Update()

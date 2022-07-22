@@ -44,8 +44,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: -0.0021357536}
+  m_Size: {x: 0.5, y: 0.5}
   m_Direction: 0
 --- !u!1 &1258388818992419809
 GameObject:
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf0698b4f17c0347b9f7a196e436011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: []
+  InventoryPlayerList: []
   range: 1.5
   MoodIndex: 5
 --- !u!114 &2468065432820096805

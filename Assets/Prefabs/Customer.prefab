@@ -4855,9 +4855,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.013706623}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.12992223
 --- !u!1 &7794042570616234870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4907,6 +4907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7a34620ce1c484884886fb41a98437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CookingAreaPanel: {fileID: 0}
 --- !u!50 &6533123835178664128
 Rigidbody2D:
   serializedVersion: 4

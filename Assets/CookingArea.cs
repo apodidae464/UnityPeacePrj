@@ -61,10 +61,10 @@ public class CookingArea : MonoBehaviour
                         {
                             
                             Player.Instance.addFoodInInventory(hit.collider.gameObject);
-                            Destroy(hit.collider.gameObject);
-                            numFoodGameObjects--;
                             int index = int.Parse(hit.collider.gameObject.name);
                             isObjectFull[index] = false;
+                            numFoodGameObjects--;
+                            Destroy(hit.collider.gameObject);
                         }
                        
                     }
@@ -164,7 +164,7 @@ public class CookingArea : MonoBehaviour
     private void creatFood(int index, FoodData.FoodType foodTypeData)
     {
         FoodGameObjects[numFoodGameObjects] = Instantiate(foodObj) as GameObject;
-        FoodGameObjects[numFoodGameObjects].name = numFoodGameObjects.ToString();
+        FoodGameObjects[numFoodGameObjects].name = index.ToString();
         FoodGameObjects[numFoodGameObjects].transform.SetParent(this.transform.Find("ListFood").transform);
         FoodGameObjects[numFoodGameObjects].SetActive(true);
         FoodGameObjects[numFoodGameObjects].GetComponent<Food>().SetData(foodTypeData);

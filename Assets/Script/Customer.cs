@@ -5,7 +5,6 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
 
-
     private FoodData.FoodType TypeFoodOrder = new FoodData.FoodType();
 
     private void Awake()
@@ -18,13 +17,13 @@ public class Customer : MonoBehaviour
         this.transform.Find("FirstPopup").transform.gameObject.SetActive(false);
         StartCoroutine(ShowFirstPopupCoroutine());
 
-        int randomOrderPopup = Random.Range(0, GameCore._FoodPopUpList.Count);
-        GameObject OrderPopup = Instantiate(GameCore._FoodPopUpList[randomOrderPopup]) as GameObject;
+        int randomOrderPopup = Random.Range(0, GameCore.Instance._FoodPopUpList.Count);
+        GameObject OrderPopup = Instantiate(GameCore.Instance._FoodPopUpList[randomOrderPopup]) as GameObject;
         OrderPopup.transform.SetParent(this.transform);
         OrderPopup.transform.position = this.transform.Find("FirstPopup").transform.position;
         OrderPopup.SetActive(false);
 
-        TypeFoodOrder.name = GameCore._FoodPopUpList[randomOrderPopup].name;
+        TypeFoodOrder.name = GameCore.Instance._FoodPopUpList[randomOrderPopup].name;
     }
 
     void Update()

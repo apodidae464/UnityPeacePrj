@@ -27,14 +27,15 @@ public class CustomerPopup : MonoBehaviour
                         Debug.Log("I'm hitting Custommer Popup");
                         if(Player.Instance.InventoryPlayerList.Count > 0)
                         {
-                            if (Player.Instance.InventoryPlayerList.Count == 2)
+                            if (Player.Instance.InventoryPlayerList.Count == 1)
                             {
                                 Debug.Log("1 slot in player inventory");
                                 if (Player.Instance.InventoryPlayerList[0].GetComponent<Food>()._foodType.name == _foodType.name)
                                 {
                                     Destroy(Player.Instance.InventoryPlayerList[0]);
                                     Player.Instance.InventoryPlayerList.Clear();
-                                    Destroy(gameObject);
+                                    GameCore.Instance._CustomerList.Remove(transform.parent.gameObject);
+                                    Destroy(transform.parent.gameObject);
 
                                 }
 
@@ -49,7 +50,8 @@ public class CustomerPopup : MonoBehaviour
                                     {
                                         Destroy(Player.Instance.InventoryPlayerList[i]);
                                         Player.Instance.InventoryPlayerList.Remove(Player.Instance.InventoryPlayerList[i]);
-                                        Destroy(gameObject);
+                                        GameCore.Instance._CustomerList.Remove(transform.parent.gameObject);
+                                        Destroy(transform.parent.gameObject);
                                         break;
                                     }
                                 }  
