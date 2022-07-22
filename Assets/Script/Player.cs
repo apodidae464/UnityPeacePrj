@@ -93,8 +93,17 @@ public class Player : MonoBehaviour
 
     public void ResetInventory()
     {
-        Destroy(InventoryPlayerList[0]);
-        Destroy(InventoryPlayerList[1]);
+        if(InventoryPlayerList.Count == 0)
+        {
+            return;
+        }
+        if(InventoryPlayerList.Count < 2)
+            Destroy(InventoryPlayerList[0]);
+        else
+        {
+            Destroy(InventoryPlayerList[0]);
+            Destroy(InventoryPlayerList[1]);
+        }
         InventoryPlayerList.Clear();
     }
 

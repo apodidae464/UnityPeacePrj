@@ -57,7 +57,7 @@ public class CookingArea : MonoBehaviour
                     }
                     if (hit.collider.gameObject.tag == AllTag.Food)
                     {
-                        if(CookingAreaPanel.activeSelf == false /*&& Player.Instance.InventoryPlayerList.Count < 2*/)
+                        if(CookingAreaPanel.activeSelf == false && Player.Instance.InventoryPlayerList.Count < 2)
                         {
                             
                             Player.Instance.addFoodInInventory(hit.collider.gameObject);
@@ -167,7 +167,7 @@ public class CookingArea : MonoBehaviour
         FoodGameObjects[numFoodGameObjects].name = numFoodGameObjects.ToString();
         FoodGameObjects[numFoodGameObjects].transform.SetParent(this.transform.Find("ListFood").transform);
         FoodGameObjects[numFoodGameObjects].SetActive(true);
-        FoodGameObjects[numFoodGameObjects].GetComponent<CustomerPopup>().SetData(foodTypeData);
+        FoodGameObjects[numFoodGameObjects].GetComponent<Food>().SetData(foodTypeData);
         FoodGameObjects[numFoodGameObjects].GetComponent<Transform>().position = FoodTranformsList[index].position;
         isObjectFull[index] = true;
         numFoodGameObjects++;
