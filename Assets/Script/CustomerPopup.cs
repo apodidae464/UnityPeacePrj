@@ -2,7 +2,7 @@
 
 public class CustomerPopup : MonoBehaviour
 {
-    private FoodData.FoodType _foodType;
+    public FoodData.FoodType _foodType;
 
     public void SetData(FoodData.FoodType foodType)
     {

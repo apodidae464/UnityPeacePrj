@@ -10,4 +10,6 @@ public class AllTag : MonoBehaviour
     public static string Customer = "Customer";
     public static string Cleaner = "Cleaner";
     public static string FirstPopup = "FirstPopup";
+    public static string Food = "Food";
+    public static string PlayerFood = "PlayerFood";
 }

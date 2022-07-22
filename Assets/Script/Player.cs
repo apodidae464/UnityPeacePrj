@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public List<GameObject> InventoryPlayerList = new List<GameObject>();
+    //public GameObject Inventory2 = new GameObject();
     //Singleton
     public static Player Instance { get; private set; }
 
@@ -59,5 +62,35 @@ public class Player : MonoBehaviour
         {
             //GameOver BLOOM!
         }
+
+        
+
     }
+
+    public void addFoodInInventory(GameObject food)
+    {
+        GameObject g;
+        switch (InventoryPlayerList.Count)
+        {
+            case 0:
+                g = Instantiate(food);
+                g.tag = AllTag.PlayerFood;
+                InventoryPlayerList.Add(g);
+                InventoryPlayerList[0].transform.SetParent(this.transform);
+                InventoryPlayerList[0].transform.position = this.transform.Find("Inventory1").transform.position;
+                break;
+            case 1:
+                g = Instantiate(food);
+                g.tag = AllTag.PlayerFood;
+                InventoryPlayerList.Add(g);
+                InventoryPlayerList[1].transform.SetParent(this.transform);
+                InventoryPlayerList[1].transform.position = this.transform.Find("Inventory2").transform.position;
+                break;
+            default:
+                break;
+        }
+    }
+        
+
 }
+

@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3229824095036944534}
   - component: {fileID: 3229824095036944535}
-  - component: {fileID: 3229824095036944528}
   - component: {fileID: 3229824095036944529}
   m_Layer: 0
   m_Name: Tables
@@ -114,22 +113,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3229824095036944528
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3229824095036944533}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0064979736, y: 0.073817626}
-  serializedVersion: 2
-  m_Radius: 0.2310485
 --- !u!114 &3229824095036944529
 MonoBehaviour:
   m_ObjectHideFlags: 0
