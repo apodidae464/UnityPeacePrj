@@ -515,6 +515,8 @@ GameObject:
   - component: {fileID: 932951292}
   - component: {fileID: 932951293}
   - component: {fileID: 932951294}
+  - component: {fileID: 932951295}
+  - component: {fileID: 932951296}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -599,9 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4690c3127101b6d4b94df95ab83a3417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 2
   _FoodPopUpList: []
-  _FoodPopUpUsedList: []
   _CustomerList: []
   _tableList: []
   _CustomerPopup: {fileID: 2295336060921859959, guid: 5e97afd71cc462a41b224ffae3dac0cc,
@@ -643,6 +643,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81484e6c1bcc3784aabd506892a6da20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &932951295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932951288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b366b62a7e66c114188aece0d6d0a057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &932951296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932951288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe33b66bb6ce8a4aa81f3674f5f5b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothSpeed: 2
 --- !u!4 &1038128728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3229824095036944534, guid: 5e7d5d506f4643947b9dd056f62d49d3,

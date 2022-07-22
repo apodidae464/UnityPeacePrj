@@ -5,31 +5,16 @@ using UnityEngine;
 
 public class GameCore : MonoBehaviour
 {
-
     public static GameCore Instance { get; private set; }
-
-    private Transform taget;
-
-    [SerializeField] private float smoothSpeed;
-
     public List<GameObject> _FoodPopUpList;
-    public List<GameObject> _FoodPopUpUsedList;
-
     public List<GameObject> _CustomerList;
     public List<Table> _tableList = new List<Table>();
-
     public GameObject _CustomerPopup;
     public GameObject _Customer;
-
     public FoodData foodData;
-
     public bool isListTableFull = false;
-
     public float respawnTime = 2.0f;
-    private Vector2 screenBounds;
 
-
-    //private GameCore pool;
 
     private void Awake()
     {
@@ -43,7 +28,6 @@ public class GameCore : MonoBehaviour
         }
 
         _FoodPopUpList = new List<GameObject>();
-        _FoodPopUpUsedList = new List<GameObject>();
         _CustomerList = new List<GameObject>();
         isListTableFull = false;
         LoadFoodDatatoList();
@@ -51,11 +35,7 @@ public class GameCore : MonoBehaviour
 
     private void Start()
     {
-        taget = GameObject.FindGameObjectWithTag(AllTag.Player).GetComponent<Transform>();
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        StartCoroutine(CustomerWave());
-
-        //pool = transform.parent.GetComponent<GameCore>();
+        
     }
 
     private void Update()
@@ -77,18 +57,7 @@ public class GameCore : MonoBehaviour
             respawnTime = 1.5f;
         if (Player.Instance.MoodIndex <= 30.0f)
             respawnTime = 1.0f;
-
-        if(_CustomerList.Count > 0)
-        {
-            Player.Instance.MoodIndex -= (float)_CustomerList.Count * 0.5f;
-        }
-
-
-
-        //Tranform.position for camera
-        transform.position = Vector3.Lerp(transform.position, new Vector3(taget.position.x, taget.position.y, transform.position.z), smoothSpeed * Time.deltaTime);
-
-
+    
     }
 
     public void Restart()
@@ -113,78 +82,4 @@ public class GameCore : MonoBehaviour
         }
     }
 
-    public GameObject GetFoodPopup(int toltalFree)
-    {
-        GameObject g = _FoodPopUpList[toltalFree];
-        g.SetActive(true);
-        _FoodPopUpUsedList.Add(g);
-        return g;
-    }
-
-    public void ReturnFoodPopup(GameObject obj)
-    {
-        obj.SetActive(false);
-        _FoodPopUpUsedList.Remove(obj);
-        _FoodPopUpList.Add(obj);
-    }
-
-    IEnumerator ReturnFoodPopupAfterTime()
-    {
-        yield return new WaitForSeconds(3f);
-        //pool.ReturnFoodPopup(gameObject);
-
-    }
-
-    public void ReturnObject(GameObject obj)
-    {
-        Debug.Assert(_FoodPopUpUsedList.Contains(obj));
-        obj.SetActive(false);
-        _FoodPopUpUsedList.Remove(obj);
-        _FoodPopUpList.Add(obj);
-    }
-
-    
-
-    private void spawnCustomer()
-    {
-
-        bool isCreate = true;
-
-
-        if (_CustomerList.Count >= _tableList.Count) isListTableFull = true;
-        if(_CustomerList.Count < _tableList.Count)
-            isListTableFull = false;
-
-        if (isListTableFull == false)
-        {
-            do
-            {
-                int randomTable = Random.Range(0, _tableList.Count);
-                if (_tableList[randomTable].isFull != true)
-                {
-                    GameObject a = Instantiate(_Customer) as GameObject;
-                    a.name = a.name /*+ (_CustomerList.Count + 1).ToString()*/;
-                    a.transform.position = _tableList[randomTable].transform.GetChild(0).gameObject.transform.position;
-                    _CustomerList.Add(a);
-                    _tableList[randomTable].isFull = true;
-                    isCreate = true;
-                }
-                else
-                {
-                    isCreate = false;
-                }
-            }
-            while (!isCreate);
-        }
-        
-    }
-
-    private IEnumerator CustomerWave()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(respawnTime);
-            spawnCustomer();
-        }
-    }
 }
