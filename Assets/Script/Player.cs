@@ -90,7 +90,14 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-        
+
+    public void ResetInventory()
+    {
+        Destroy(InventoryPlayerList[0]);
+        Destroy(InventoryPlayerList[1]);
+        InventoryPlayerList.Clear();
+    }
+
 
 }
 
