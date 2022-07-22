@@ -16,32 +16,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Input.touchCount > 0)
-            {
-                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-                if (hit != null && hit.collider != null)
-                {
-                    if (hit.collider.gameObject.tag == AllTag.Player)
-                    {
-                        Debug.Log("I'm hitting Player");
-                        isInObject = true;
-                    }
-                    if (hit.collider.gameObject.tag == AllTag.Customer)
-                    {
-                        Debug.Log("I'm hitting Custommer");
-                        isInObject = true;
-                    }
-                    if (hit.collider.gameObject.tag == AllTag.Popup)
-                    {
-                        Debug.Log("I'm hitting popup");
-                        isInObject = true;
-                    }
-                }
-            }
-        }
         
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)
         {

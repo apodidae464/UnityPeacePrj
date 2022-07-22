@@ -77,7 +77,7 @@ public class GameCore : MonoBehaviour
             _FoodPopUpList.Add(Instantiate(_CustomerPopup));
             _FoodPopUpList[_FoodPopUpList.Count - 1].name = _FoodPopUpList[_FoodPopUpList.Count - 1].name /*+ (_FoodPopUpList.Count).ToString()*/;
             _FoodPopUpList[_FoodPopUpList.Count - 1].SetActive(false);
-            _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<CustomerPopup>().SetData(foodTypeData);
+            _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<Popup>().SetData(foodTypeData);
             _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<Transform>().position = new Vector3(Screen.width, Screen.height, 0f);
         }
     }
