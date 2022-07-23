@@ -13,7 +13,9 @@ public class InputController : MonoBehaviour
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-                if (hit != null && hit.collider != null)
+                if (hit != null && hit.collider != null
+                    && !CookingArea.Instance.CookingAreaPanel.activeSelf
+                    )
                 {
                     if (hit.collider.gameObject.tag == AllTag.Cleaner)
                     {

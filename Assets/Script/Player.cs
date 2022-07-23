@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public List<GameObject> InventoryPlayerList = new List<GameObject>();
+    public bool[] InventoryFoodTranformFull = new bool[2] { false, false };
+    public Transform[] InventoryFoodTranform = new Transform[2]; 
     //public GameObject Inventory2 = new GameObject();
     //Singleton
     public static Player Instance { get; private set; }
@@ -18,6 +20,8 @@ public class Player : MonoBehaviour
         {
             Instance = this;
         }
+        InventoryFoodTranform[0] = Instance.transform.Find("Inventory1").transform;
+        InventoryFoodTranform[1] = Instance.transform.Find("Inventory2").transform;
     }
 
     //How to get method in Player
@@ -63,9 +67,7 @@ public class Player : MonoBehaviour
             //GameOver BLOOM!
             //GameCore.Instance.Restart();
         }
-
-        
-
+       
     }
 
     public void addFoodInInventory(GameObject food)
@@ -78,7 +80,7 @@ public class Player : MonoBehaviour
                 g.tag = AllTag.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[0].transform.SetParent(this.transform);
-                InventoryPlayerList[0].transform.position = this.transform.Find("Inventory1").transform.position;
+                InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
                 Destroy(g.transform.GetComponent<BoxCollider2D>());
                 break;
             case 1:
@@ -86,7 +88,8 @@ public class Player : MonoBehaviour
                 g.tag = AllTag.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[1].transform.SetParent(this.transform);
-                InventoryPlayerList[1].transform.position = this.transform.Find("Inventory2").transform.position;
+                InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
+                InventoryPlayerList[1].transform.position = InventoryFoodTranform[1].position;
                 Destroy(g.transform.GetComponent<BoxCollider2D>());
                 break;
             default:

@@ -36,13 +36,12 @@ public class CookingArea : MonoBehaviour
 
     void Start()
     {
+        turnOffCookingArea();
 
         Instance.Transform0 = Instance.transform.Find("ListInventory").transform.GetChild(0).transform;
         Instance.Transform1 = Instance.transform.Find("ListInventory").transform.GetChild(1).transform;
         Instance.Transform2 = Instance.transform.Find("ListInventory").transform.GetChild(2).transform;
         Instance.Transform3 = Instance.transform.Find("ListInventory").transform.GetChild(3).transform;
-
-        Instance.CookingAreaPanel.SetActive(false);
 
         FoodTranformsList[0] = Instance.Transform0;
         FoodTranformsList[1] = Instance.Transform1;

@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private bool touchStart = false;
     private Vector2 pointA;
     private Vector2 pointB;
-
     public Transform circle;
     public Transform outerCircle;
 
