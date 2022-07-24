@@ -45,8 +45,9 @@ public class InputController : MonoBehaviour
                                 {
                                     Destroy(Player.Instance.InventoryPlayerList[0]);
                                     Player.Instance.InventoryPlayerList.Clear();
-                                    //GameCore.Instance._CustomerList.Remove(transform.parent.gameObject);
-                                    Destroy(hit.collider.gameObject);
+                                    GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
+                                    Customer.GetComponent<Customer>().OnClickonPopupInCustomer();
+                                    
                                 }
 
                             }
@@ -59,8 +60,8 @@ public class InputController : MonoBehaviour
                                     {
                                         Destroy(Player.Instance.InventoryPlayerList[i]);
                                         Player.Instance.InventoryPlayerList.Remove(Player.Instance.InventoryPlayerList[i]);
-                                        //GameCore.Instance._CustomerList.Remove(transform.parent.gameObject);
-                                        Destroy(hit.collider.gameObject);
+                                        GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
+                                        Customer.GetComponent<Customer>().OnClickonPopupInCustomer();
                                         break;
                                     }
                                 }
@@ -84,8 +85,9 @@ public class InputController : MonoBehaviour
                     if (hit.collider.gameObject.tag == AllTag.FirstPopup)
                     {
                         Debug.Log("I'm hitting first popup");
-                        hit.collider.gameObject.transform.parent.transform.gameObject.SetActive(false);
-                        hit.collider.gameObject.transform.parent.transform.gameObject.transform.transform.parent.Find("Popup(Clone)(Clone)").transform.gameObject.SetActive(true);
+                        GameObject Customer = hit.collider.gameObject.transform.parent.parent.gameObject;
+                        Customer.transform.Find("FirstPopup").gameObject.SetActive(false);
+                        Customer.GetComponent<Customer>().OrderPopup.SetActive(true);
                     }
 
 

@@ -10,8 +10,16 @@ public class Player : MonoBehaviour
     //Singleton
     public static Player Instance { get; private set; }
 
+
+    private bool isInGreenArea = false;
+    private bool isInRedArea = false;
+
+    public float range = 1.5f;
+    public float MoodIndex = 100;
+
     private void Awake()
     {
+        
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -22,6 +30,12 @@ public class Player : MonoBehaviour
         }
         InventoryFoodTranform[0] = Instance.transform.Find("Inventory1").transform;
         InventoryFoodTranform[1] = Instance.transform.Find("Inventory2").transform;
+        
+    }
+
+    private void Start()
+    {
+        GameCore.Instance.HealthBar.SetMaxHealth(Instance.MoodIndex);
     }
 
     //How to get method in Player
@@ -29,21 +43,17 @@ public class Player : MonoBehaviour
 
     //Attribute of Player
 
-    private bool isInGreenArea = false;
-    private bool isInRedArea = false;
-
-    public float range = 1.5f;
-    public float MoodIndex = 100.0f;    //Max = 100, Min = 0
+    //Max = 100, Min = 0
 
     //Method
     public void MoodIndexIncrease()
     {
-        MoodIndex += 1f;
+        MoodIndex += 1;
     }
 
     public void MoodIndexDecrease()
     {
-        MoodIndex -= 1f;
+        MoodIndex -= 1;
     }
 
     private void OnDrawGizmosSelected()

@@ -7,13 +7,17 @@ public class GameCore : MonoBehaviour
 {
     public static GameCore Instance { get; private set; }
     public List<GameObject> _FoodPopUpList;
-    public List<GameObject> _CustomerList;
+    public int numOfCustommer = 0;
+    public GameObject[] _CustomerArr;
     public List<Table> _tableList = new List<Table>();
+    public bool[] istableFull;
+    public Transform[] _tableTranformArr;
     public GameObject _CustomerPopup;
     public GameObject _Customer;
     public FoodData foodData;
     public bool isListTableFull = false;
     public float respawnTime = 2.0f;
+    public HealthBar HealthBar;
 
 
     private void Awake()
@@ -27,39 +31,46 @@ public class GameCore : MonoBehaviour
             Instance = this;
         }
 
-        _FoodPopUpList = new List<GameObject>();
-        _CustomerList = new List<GameObject>();
-        isListTableFull = false;
-        LoadFoodDatatoList();
     }
 
     private void Start()
     {
-        
+        _FoodPopUpList = new List<GameObject>();
+        isListTableFull = false;
+        LoadFoodDatatoList();
+        _CustomerArr = new GameObject[_tableList.Count];
+        _tableTranformArr = new Transform[_tableList.Count];
+        for (int i = 0; i < _tableList.Count; i++)
+        {
+            _tableTranformArr[i] = _tableList[i].transform;
+        }
+        istableFull = new bool[_tableList.Count];
+        for (int i = 0; i < _tableList.Count; i++)
+        {
+            istableFull[i] = false;
+        }
     }
 
     private void Update()
     {
 
-        if (Player.Instance.MoodIndex <= 100.0f)
-            respawnTime = 4.0f;
-        if (Player.Instance.MoodIndex <= 90.0f)
-            respawnTime = 3.0f;
-        if (Player.Instance.MoodIndex <= 80.0f)
-            respawnTime = 2.0f;
-        if (Player.Instance.MoodIndex <= 70.0f)
-            respawnTime = 2.5f;
-        if (Player.Instance.MoodIndex <= 60.0f)
-            respawnTime = 2.3f;
-        if (Player.Instance.MoodIndex <= 50.0f)
-            respawnTime = 1.5f;
-        if (Player.Instance.MoodIndex <= 40.0f)
-            respawnTime = 1.5f;
-        if (Player.Instance.MoodIndex <= 30.0f)
-            respawnTime = 1.0f;
     
     }
 
+    public void RemoveCustomerinArr(GameObject gameObject)
+    {
+        for (int i = 0; i < numOfCustommer; i++)
+        {
+            if(gameObject.name == _CustomerArr[i].name)
+            {
+                Destroy(_CustomerArr[i]);
+                istableFull[i] = false;
+                break;
+
+            }
+        }
+        numOfCustommer--;
+    }
     public void Restart()
     {
         SceneManager.LoadScene("Start");

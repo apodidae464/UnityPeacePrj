@@ -21,9 +21,8 @@ public class CustommerSpammer : MonoBehaviour
 
         bool isCreate = true;
 
-
-        if (GameCore.Instance._CustomerList.Count >= GameCore.Instance._tableList.Count) GameCore.Instance.isListTableFull = true;
-        if (GameCore.Instance._CustomerList.Count < GameCore.Instance._tableList.Count)
+        if (GameCore.Instance.numOfCustommer >= GameCore.Instance._tableList.Count) GameCore.Instance.isListTableFull = true;
+        if (GameCore.Instance.numOfCustommer < GameCore.Instance._tableList.Count)
             GameCore.Instance.isListTableFull = false;
 
         if (GameCore.Instance.isListTableFull == false)
@@ -31,13 +30,19 @@ public class CustommerSpammer : MonoBehaviour
             do
             {
                 int randomTable = Random.Range(0, GameCore.Instance._tableList.Count);
-                if (GameCore.Instance._tableList[randomTable].isFull != true)
+                if (GameCore.Instance.istableFull[randomTable] != true)
                 {
                     GameObject a = Instantiate(GameCore.Instance._Customer) as GameObject;
                     a.name = "customer" + randomTable.ToString() /*+ (GameCore.Instance._CustomerList.Count + 1).ToString()*/;
                     a.transform.position = GameCore.Instance._tableList[randomTable].transform.GetChild(0).gameObject.transform.position;
-                    GameCore.Instance._CustomerList.Add(a);
+
+                    GameCore.Instance._CustomerArr[randomTable] = a;
+
                     GameCore.Instance._tableList[randomTable].isFull = true;
+
+
+                    GameCore.Instance.numOfCustommer++;
+                    GameCore.Instance.istableFull[randomTable] = true;
                     isCreate = true;
                 }
                 else
