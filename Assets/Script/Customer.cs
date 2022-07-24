@@ -19,6 +19,7 @@ public class Customer : MonoBehaviour
         this.transform.Find("FirstPopup").gameObject.SetActive(false);
         this.transform.Find("EndPopup").gameObject.SetActive(false);
         StartCoroutine(ShowFirstPopupCoroutine());
+        StartCoroutine(ReduceHealthCoroutine());
 
         int randomOrderPopup = Random.Range(0, GameCore.Instance._FoodPopUpList.Count);
         OrderPopup = Instantiate(GameCore.Instance._FoodPopUpList[randomOrderPopup]) as GameObject;
@@ -33,6 +34,7 @@ public class Customer : MonoBehaviour
     {
         OrderPopup.SetActive(false);
         isTakenOrder = true;
+        Player.Instance.MoodIndexIncreaseByCustomer();
     }
     void Update()
     {
@@ -55,5 +57,13 @@ public class Customer : MonoBehaviour
 
         GameCore.Instance.RemoveCustomerinArr(gameObject);
         Destroy(gameObject);
+    }
+    IEnumerator ReduceHealthCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            Player.Instance.MoodIndexDecreaseByCustomer();
+        }
     }
 }

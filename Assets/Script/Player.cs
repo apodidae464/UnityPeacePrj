@@ -5,7 +5,9 @@ public class Player : MonoBehaviour
 {
     public List<GameObject> InventoryPlayerList = new List<GameObject>();
     public bool[] InventoryFoodTranformFull = new bool[2] { false, false };
-    public Transform[] InventoryFoodTranform = new Transform[2]; 
+    public Transform[] InventoryFoodTranform = new Transform[2];
+
+    
     //public GameObject Inventory2 = new GameObject();
     //Singleton
     public static Player Instance { get; private set; }
@@ -15,7 +17,7 @@ public class Player : MonoBehaviour
     private bool isInRedArea = false;
 
     public float range = 1.5f;
-    public float MoodIndex = 100;
+    public float MoodIndex = 10f;
 
     private void Awake()
     {
@@ -48,12 +50,24 @@ public class Player : MonoBehaviour
     //Method
     public void MoodIndexIncrease()
     {
-        MoodIndex += 1;
+        MoodIndex += 0.1f;
+        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
     }
 
+    public void MoodIndexDecreaseByCustomer()
+    {
+        MoodIndex -= GameCore.Instance.CustomerReduceHealt;
+        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
+    }
+    public void MoodIndexIncreaseByCustomer()
+    {
+        MoodIndex += GameCore.Instance.CustomerIncreaseHealt;
+        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
+    }
     public void MoodIndexDecrease()
     {
-        MoodIndex -= 1;
+        MoodIndex -= 0.1f;
+        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
     }
 
     private void OnDrawGizmosSelected()
@@ -74,6 +88,7 @@ public class Player : MonoBehaviour
         }
         if (MoodIndex <= 0)
         {
+            UIController.Instance.GameoverAreaPanel.SetActive(true);
             //GameOver BLOOM!
             //GameCore.Instance.Restart();
         }

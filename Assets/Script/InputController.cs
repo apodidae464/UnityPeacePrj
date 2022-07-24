@@ -14,7 +14,8 @@ public class InputController : MonoBehaviour
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
                 if (hit != null && hit.collider != null
-                    && !CookingArea.Instance.CookingAreaPanel.activeSelf
+                    && !UIController.Instance.CookingAreaPanel.activeSelf
+                    && !UIController.Instance.GameoverAreaPanel.activeSelf
                     )
                 {
                     if (hit.collider.gameObject.tag == AllTag.Cleaner)
@@ -72,7 +73,7 @@ public class InputController : MonoBehaviour
                     if (hit.collider.gameObject.tag == AllTag.CookingArea)
                     {
                         Debug.Log("I'm hitting first Cooking area");
-                        CookingArea.Instance.CookingAreaPanel.SetActive(true);
+                        UIController.Instance.CookingAreaPanel.SetActive(true);
                     }
                     if (hit.collider.gameObject.tag == AllTag.Food)
                     {
