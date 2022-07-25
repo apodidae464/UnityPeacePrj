@@ -18,6 +18,7 @@ public class GameCore : MonoBehaviour
     public bool isListTableFull = false;
     public float respawnTime = 2.0f;
     public HealthBar HealthBar;
+    public GameObject Spamcustomer;
 
     public float CustomerReduceHealt = 0.05f;
     public float CustomerIncreaseHealt = 1f;
@@ -35,6 +36,7 @@ public class GameCore : MonoBehaviour
         }
         _tableList = new List<Table>();
         _FoodPopUpList = new List<GameObject>();
+        Spamcustomer.SetActive(false);
 
     }
 
@@ -50,6 +52,15 @@ public class GameCore : MonoBehaviour
     {
 
     
+    }
+
+    public void startSpamCustomer()
+    {
+        Spamcustomer.SetActive(true);
+    }
+    public void stopSpamCustomer()
+    {
+        Spamcustomer.SetActive(false);
     }
 
     public void RemoveCustomerinArr(GameObject gameObject)
