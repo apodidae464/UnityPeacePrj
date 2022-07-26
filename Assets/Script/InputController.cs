@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -48,9 +45,7 @@ public class InputController : MonoBehaviour
                                     Player.Instance.InventoryPlayerList.Clear();
                                     GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
                                     Customer.GetComponent<Customer>().OnClickonPopupInCustomer();
-                                    
                                 }
-
                             }
                             if (Player.Instance.InventoryPlayerList.Count == 2)
                             {
@@ -67,7 +62,6 @@ public class InputController : MonoBehaviour
                                     }
                                 }
                             }
-
                         }
                     }
                     if (hit.collider.gameObject.tag == AllTag.CookingArea)
@@ -81,7 +75,6 @@ public class InputController : MonoBehaviour
                         {
                             CookingArea.Instance.OnClickFoodinCookingArea(hit.collider.gameObject);
                         }
-
                     }
                     if (hit.collider.gameObject.tag == AllTag.FirstPopup)
                     {
@@ -90,8 +83,6 @@ public class InputController : MonoBehaviour
                         Customer.transform.Find("FirstPopup").gameObject.SetActive(false);
                         Customer.GetComponent<Customer>().OrderPopup.SetActive(true);
                     }
-
-
                 }
             }
         }

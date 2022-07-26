@@ -1,20 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-
     public FoodData.FoodType PlayerOrderFood = new FoodData.FoodType();
     public GameObject OrderPopup;
-    bool isTakenOrder = false;
+    private bool isTakenOrder = false;
 
     private void Awake()
     {
-        
     }
 
-    void Start()
+    private void Start()
     {
         this.transform.Find("FirstPopup").gameObject.SetActive(false);
         this.transform.Find("EndPopup").gameObject.SetActive(false);
@@ -30,35 +27,39 @@ public class Customer : MonoBehaviour
 
         PlayerOrderFood.name = GameCore.Instance._FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
     }
+
     public void OnClickonPopupInCustomer()
     {
         OrderPopup.SetActive(false);
         isTakenOrder = true;
         Player.Instance.MoodIndexIncreaseByCustomer();
     }
-    void Update()
+
+    private void Update()
     {
-       if(isTakenOrder)
+        if (isTakenOrder)
         {
             StartCoroutine(ShowEndPopupCoroutine());
         }
     }
 
-    IEnumerator ShowFirstPopupCoroutine()
-    {   
+    private IEnumerator ShowFirstPopupCoroutine()
+    {
         yield return new WaitForSeconds(3);
         this.transform.Find("FirstPopup").transform.gameObject.SetActive(true);
     }
 
-    IEnumerator ShowEndPopupCoroutine()
+    private IEnumerator ShowEndPopupCoroutine()
     {
         this.transform.Find("EndPopup").transform.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
 
         GameCore.Instance.RemoveCustomerinArr(gameObject);
         Destroy(gameObject);
+        yield return new WaitForSeconds(3);
     }
-    IEnumerator ReduceHealthCoroutine()
+
+    private IEnumerator ReduceHealthCoroutine()
     {
         while (true)
         {

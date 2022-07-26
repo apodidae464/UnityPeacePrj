@@ -1,24 +1,20 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CustommerSpammer : MonoBehaviour
 {
-
     private void Start()
     {
         StartCoroutine(CustomerSpam());
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    // Update is called once per frame
+    private void Update()
+    {
     }
 
     private void spawnCustomer()
     {
-
         bool isCreate = true;
 
         if (GameCore.Instance.numOfCustommer >= GameCore.Instance._tableList.Count) GameCore.Instance.isListTableFull = true;
@@ -40,7 +36,6 @@ public class CustommerSpammer : MonoBehaviour
 
                     GameCore.Instance._tableList[randomTable].isFull = true;
 
-
                     GameCore.Instance.numOfCustommer++;
                     GameCore.Instance.istableFull[randomTable] = true;
                     isCreate = true;
@@ -52,17 +47,14 @@ public class CustommerSpammer : MonoBehaviour
             }
             while (!isCreate);
         }
-
     }
 
     private IEnumerator CustomerSpam()
     {
         while (true)
         {
-            yield return new WaitForSeconds(GameCore.Instance.respawnTime);
+            yield return new WaitForSeconds(Random.Range(GameCore.Instance.respawnTime - 1f, GameCore.Instance.respawnTime + 1f));
             spawnCustomer();
         }
     }
 }
-
-

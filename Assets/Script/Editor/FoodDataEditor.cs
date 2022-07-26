@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditorInternal;
+using UnityEngine;
 
 [CustomEditor(typeof(FoodData))]
 [CanEditMultipleObjects]
 [System.Serializable]
-
 public class FoodDataEditor : Editor
 {
     private ReorderableList FoodTypeEditorList;
@@ -23,7 +20,6 @@ public class FoodDataEditor : Editor
         serializedObject.Update();
         FoodTypeEditorList.DoLayoutList();
         serializedObject.ApplyModifiedProperties();
-
     }
 
     private void InitializeReordableList(ref ReorderableList list, string propertyName, string listLabel)
@@ -50,6 +46,5 @@ public class FoodDataEditor : Editor
                 position: new Rect(x: rect.x + 70, rect.y, width: rect.width - 60 - 30, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("image"), GUIContent.none);
         };
-
     }
 }

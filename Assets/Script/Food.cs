@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Food : MonoBehaviour
 {
@@ -11,6 +9,5 @@ public class Food : MonoBehaviour
         _foodType = foodType;
         GetComponent<SpriteRenderer>().sprite = _foodType.image;
         this.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text = _foodType.name;
-
     }
 }

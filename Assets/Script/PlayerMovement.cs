@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)
         {
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));

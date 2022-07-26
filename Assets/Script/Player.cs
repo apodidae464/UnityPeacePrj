@@ -6,22 +6,13 @@ public class Player : MonoBehaviour
     public List<GameObject> InventoryPlayerList = new List<GameObject>();
     public bool[] InventoryFoodTranformFull = new bool[2] { false, false };
     public Transform[] InventoryFoodTranform = new Transform[2];
-
-    
-    //public GameObject Inventory2 = new GameObject();
-    //Singleton
     public static Player Instance { get; private set; }
-
-
-    private bool isInGreenArea = false;
-    private bool isInRedArea = false;
 
     public float range = 1.5f;
     public float MoodIndex = 10f;
 
     private void Awake()
     {
-        
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -32,7 +23,6 @@ public class Player : MonoBehaviour
         }
         InventoryFoodTranform[0] = Instance.transform.Find("Inventory1").transform;
         InventoryFoodTranform[1] = Instance.transform.Find("Inventory2").transform;
-        
     }
 
     private void Start()
@@ -48,9 +38,9 @@ public class Player : MonoBehaviour
     //Max = 100, Min = 0
 
     //Method
-    public void MoodIndexIncrease()
+    public void MoodIndexIncrease(float value)
     {
-        MoodIndex += 0.1f;
+        MoodIndex += value;
         GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
     }
 
@@ -59,40 +49,37 @@ public class Player : MonoBehaviour
         MoodIndex -= GameCore.Instance.CustomerReduceHealt;
         GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
     }
+
     public void MoodIndexIncreaseByCustomer()
     {
         MoodIndex += GameCore.Instance.CustomerIncreaseHealt;
         GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
     }
-    public void MoodIndexDecrease()
+
+    public void MoodIndexDecrease(float value)
     {
-        MoodIndex -= 0.1f;
+        MoodIndex -= value;
         GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
     private void Update()
     {
-        if (isInGreenArea)
-        {
-            MoodIndexDecrease();
-        }
-        if (isInRedArea)
-        {
-            MoodIndexIncrease();
-        }
         if (MoodIndex <= 0)
         {
             UIController.Instance.GameoverAreaPanel.SetActive(true);
             //GameOver BLOOM!
             //GameCore.Instance.Restart();
         }
-       
+        if (MoodIndex > 10)
+        {
+            MoodIndex = 10;
+        }
     }
 
     public void addFoodInInventory(GameObject food)
@@ -108,6 +95,7 @@ public class Player : MonoBehaviour
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
                 Destroy(g.transform.GetComponent<BoxCollider2D>());
                 break;
+
             case 1:
                 g = Instantiate(food);
                 g.tag = AllTag.PlayerFood;
@@ -117,6 +105,7 @@ public class Player : MonoBehaviour
                 InventoryPlayerList[1].transform.position = InventoryFoodTranform[1].position;
                 Destroy(g.transform.GetComponent<BoxCollider2D>());
                 break;
+
             default:
                 break;
         }
@@ -124,11 +113,11 @@ public class Player : MonoBehaviour
 
     public void ResetInventory()
     {
-        if(InventoryPlayerList.Count == 0)
+        if (InventoryPlayerList.Count == 0)
         {
             return;
         }
-        if(InventoryPlayerList.Count < 2)
+        if (InventoryPlayerList.Count < 2)
             Destroy(InventoryPlayerList[0]);
         else
         {
@@ -137,8 +126,4 @@ public class Player : MonoBehaviour
         }
         InventoryPlayerList.Clear();
     }
-
-
-
 }
-

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameCore : MonoBehaviour
 {
@@ -25,7 +25,6 @@ public class GameCore : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -37,27 +36,24 @@ public class GameCore : MonoBehaviour
         _tableList = new List<Table>();
         _FoodPopUpList = new List<GameObject>();
         Spamcustomer.SetActive(false);
-
     }
 
     private void Start()
-    {    
+    {
         isListTableFull = false;
         LoadFoodDatatoList();
         StartCoroutine(LaterStart());
-        
     }
 
     private void Update()
     {
-
-    
     }
 
     public void startSpamCustomer()
     {
         Spamcustomer.SetActive(true);
     }
+
     public void stopSpamCustomer()
     {
         Spamcustomer.SetActive(false);
@@ -67,20 +63,21 @@ public class GameCore : MonoBehaviour
     {
         for (int i = 0; i < numOfCustommer; i++)
         {
-            if(gameObject.name == _CustomerArr[i].name)
+            if (gameObject.name == _CustomerArr[i].name)
             {
                 Destroy(_CustomerArr[i]);
                 istableFull[i] = false;
                 break;
-
             }
         }
         numOfCustommer--;
     }
+
     public void Restart()
     {
         SceneManager.LoadScene("Start");
     }
+
     public void ExitProgram()
     {
         Application.Quit();
@@ -101,8 +98,7 @@ public class GameCore : MonoBehaviour
 
     private IEnumerator LaterStart()
     {
-
-         yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
         _CustomerArr = new GameObject[_tableList.Count];
         _tableTranformArr = new Transform[_tableList.Count];
         for (int i = 0; i < _tableList.Count; i++)
@@ -115,5 +111,4 @@ public class GameCore : MonoBehaviour
             istableFull[i] = false;
         }
     }
-
 }
