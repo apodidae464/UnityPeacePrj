@@ -32,7 +32,7 @@ public class Customer : MonoBehaviour
     {
         OrderPopup.SetActive(false);
         isTakenOrder = true;
-        Player.Instance.MoodIndexIncreaseByCustomer();
+        GameEvents.instance.IncreaseHealBarByCumstomer();
     }
 
     private void Update()
@@ -64,7 +64,7 @@ public class Customer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            Player.Instance.MoodIndexDecreaseByCustomer();
+            GameEvents.instance.DecreaseHealBarByCustomer();
         }
     }
 }

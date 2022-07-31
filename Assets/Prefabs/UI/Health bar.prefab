@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4789445306793075656}
   - component: {fileID: 4789445306793075654}
   - component: {fileID: 4789445306793075657}
+  - component: {fileID: 8234553315708033947}
   m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a8e023b5e66b0d478386a07d1627765, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b6bb964b792b5f4789761e163e403c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -74,6 +75,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8234553315708033947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4789445306793075659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42e32d13e8c2442b135448f350446c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img: {fileID: 4789445306793075657}
+  array:
+  - {fileID: 21300000, guid: 8b6bb964b792b5f4789761e163e403c6, type: 3}
+  - {fileID: 21300000, guid: 7650f93ffce6422419aaceb273577fc8, type: 3}
+  - {fileID: 21300000, guid: 730d24d903aa68e46b6c869ebe32c19f, type: 3}
+  - {fileID: 21300000, guid: 827bacdd04f0bc046b84aefc6ce230ec, type: 3}
 --- !u!1 &4789445307215887695
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,9 +325,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 4
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -335,8 +354,8 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 20624
-    ctime1: 40092
+    ctime0: 19661
+    ctime1: 39321
     ctime2: 65535
     ctime3: 0
     ctime4: 0

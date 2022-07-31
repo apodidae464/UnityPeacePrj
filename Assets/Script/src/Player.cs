@@ -3,31 +3,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance { get; private set; }
+
     public List<GameObject> InventoryPlayerList = new List<GameObject>();
     public bool[] InventoryFoodTranformFull = new bool[2] { false, false };
     public Transform[] InventoryFoodTranform = new Transform[2];
-    public static Player Instance { get; private set; }
-
-    public float range = 1.5f;
-    public float MoodIndex = 10f;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
-        InventoryFoodTranform[0] = Instance.transform.Find("Inventory1").transform;
-        InventoryFoodTranform[1] = Instance.transform.Find("Inventory2").transform;
+        InventoryFoodTranform[0] = instance.transform.Find("Inventory1").transform;
+        InventoryFoodTranform[1] = instance.transform.Find("Inventory2").transform;
     }
 
     private void Start()
     {
-        GameCore.Instance.HealthBar.SetMaxHealth(Instance.MoodIndex);
+        GameEvents.instance.addFood += addFoodInInventory;
     }
 
     //How to get method in Player
@@ -38,48 +36,21 @@ public class Player : MonoBehaviour
     //Max = 100, Min = 0
 
     //Method
-    public void MoodIndexIncrease(float value)
+    
+    public Vector3 GetPosition()
     {
-        MoodIndex += value;
-        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
-    }
-
-    public void MoodIndexDecreaseByCustomer()
-    {
-        MoodIndex -= GameCore.Instance.CustomerReduceHealt;
-        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
-    }
-
-    public void MoodIndexIncreaseByCustomer()
-    {
-        MoodIndex += GameCore.Instance.CustomerIncreaseHealt;
-        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
-    }
-
-    public void MoodIndexDecrease(float value)
-    {
-        MoodIndex -= value;
-        GameCore.Instance.HealthBar.SetHealth(Instance.MoodIndex);
+        return transform.position;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, AllTag.PlayerGizmosRange);
     }
 
     private void Update()
     {
-        if (MoodIndex <= 0)
-        {
-            UIController.Instance.GameoverAreaPanel.SetActive(true);
-            //GameOver BLOOM!
-            //GameCore.Instance.Restart();
-        }
-        if (MoodIndex > 10)
-        {
-            MoodIndex = 10;
-        }
+       
     }
 
     public void addFoodInInventory(GameObject food)
@@ -125,5 +96,11 @@ public class Player : MonoBehaviour
             Destroy(InventoryPlayerList[1]);
         }
         InventoryPlayerList.Clear();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.instance.addFood -= addFoodInInventory;
+
     }
 }

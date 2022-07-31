@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class RedObj : MonoBehaviour
 {
-    public float range = 1.0f;
-    public float Dame = 1f;
     private bool isInrange = false;
 
     private void inRange()
     {
         StartCoroutine(WaitSomeSecond(1));
-        Player.Instance.MoodIndexDecrease(Dame * 0.01f);
+        GameEvents.instance.HealBarDecrease(AllTag.RedObjDamage * 0.01f);
     }
 
     private void Update()
     {
-        if (Vector2.Distance(Player.Instance.gameObject.transform.position, gameObject.transform.position) <= range)
+        if (Vector2.Distance(Player.instance.GetPosition(), gameObject.transform.position) <= AllTag.RedObjGizmosRange)
         {
             isInrange = true;
         }
@@ -35,7 +33,7 @@ public class RedObj : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, AllTag.RedObjGizmosRange);
     }
     private IEnumerator WaitSomeSecond(int value)
     {

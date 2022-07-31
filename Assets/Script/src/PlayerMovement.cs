@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public static bool isInObject = false;
     public Transform player;
-    public float speed = 5.0f;
     private bool touchStart = false;
     private Vector2 pointA;
     private Vector2 pointB;
@@ -58,6 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void moveCharacter(Vector2 direction)
     {
-        player.Translate(direction * speed * Time.deltaTime);
+        player.Translate(direction * AllTag.PlayerSpeed * Time.deltaTime);
     }
 }

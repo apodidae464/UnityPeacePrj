@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class GreenObj : MonoBehaviour
 {
-    public float range = 1.0f;
-    public float Healer = 1f;
     private bool isInrange = false;
 
     private void Start()
@@ -14,12 +12,12 @@ public class GreenObj : MonoBehaviour
     private void inRange()
     {
         StartCoroutine(WaitSomeSecond(1));
-        Player.Instance.MoodIndexIncrease(Healer * 0.01f);
+        GameEvents.instance.HealBarIncrease(AllTag.HealerValue * 0.01f);
     }
 
     private void Update()
     {
-        if (Vector2.Distance(Player.Instance.gameObject.transform.position, gameObject.transform.position) <= range)
+        if (Vector2.Distance(Player.instance.GetPosition(), gameObject.transform.position) <= AllTag.GreenObjGizmosRange)
         {
             isInrange = true;
         }
@@ -38,11 +36,13 @@ public class GreenObj : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, AllTag.GreenObjGizmosRange);
     }
 
     private IEnumerator WaitSomeSecond(int value)
     {
         yield return new WaitForSeconds(value);
     }
+
+  
 }

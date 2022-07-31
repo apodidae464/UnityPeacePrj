@@ -6,10 +6,11 @@ public class CameraMovement : MonoBehaviour
 {
 
     private Transform taget;
-    [SerializeField] private float smoothSpeed = 2.0f;
+    private float smoothSpeed;
     private Vector2 screenBounds;
     private void Start()
     {
+        smoothSpeed = AllTag.CameraSmoothSpeed;
         taget = GameObject.FindGameObjectWithTag(AllTag.Player).GetComponent<Transform>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 

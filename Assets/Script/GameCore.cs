@@ -20,8 +20,7 @@ public class GameCore : MonoBehaviour
     public HealthBar HealthBar;
     public GameObject Spamcustomer;
 
-    public float CustomerReduceHealt = 0.05f;
-    public float CustomerIncreaseHealt = 1f;
+   
 
     private void Awake()
     {
