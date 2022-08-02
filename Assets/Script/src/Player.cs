@@ -112,7 +112,6 @@ public class Player : MonoBehaviour
         {
             if (InventoryPlayerList.Count == 1)
             {
-                Debug.Log("1 slot in player inventory");
                 if (InventoryPlayerList[0].GetComponent<Food>()._foodType.name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)
                 {
                     Destroy(InventoryPlayerList[0]);
@@ -123,7 +122,6 @@ public class Player : MonoBehaviour
             }
             if (Player.instance.InventoryPlayerList.Count == 2)
             {
-                Debug.Log("2 slot in player inventory");
                 for (int i = 0; i < InventoryPlayerList.Count; i++)
                 {
                     if (InventoryPlayerList[i].GetComponent<Food>()._foodType.name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)

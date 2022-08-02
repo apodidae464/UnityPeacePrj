@@ -32,6 +32,8 @@ public class Customer : MonoBehaviour
 
     public void OnClickonPopupInCustomer()
     {
+        if (!canTrigger)
+            return;
         OrderPopup.SetActive(false);
         isTakenOrder = true;
         GameEvents.instance.IncreaseHealBarByCumstomer();
