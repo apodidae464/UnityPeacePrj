@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform circle;
     public Transform outerCircle;
 
+    private void Start()
+    {
+        GameEvents.instance.inObject += SetInObject;
+    }
     // Update is called once per frame
     private void Update()
     {
@@ -55,8 +59,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void moveCharacter(Vector2 direction)
     {
-        player.Translate(direction * AllTag.PlayerSpeed * Time.deltaTime);
+        player.Translate(direction * ConstaintValue.PlayerSpeed * Time.deltaTime);
+    }
+
+    void SetInObject(bool value)
+    {
+        isInObject = value;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.instance.inObject -= SetInObject;
+
     }
 }

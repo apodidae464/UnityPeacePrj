@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6700887645762363221
 Transform:
@@ -42,11 +42,11 @@ GameObject:
   - component: {fileID: 3229824095036944535}
   - component: {fileID: 3229824095036944529}
   m_Layer: 0
-  m_Name: Tables
+  m_Name: tables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3229824095036944534
 Transform:

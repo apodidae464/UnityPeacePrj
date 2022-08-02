@@ -16,7 +16,7 @@ GameObject:
   m_TagString: CookingArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041621931131234
 Transform:
@@ -105,10 +105,10 @@ GameObject:
   - component: {fileID: 1992041622181948048}
   m_Layer: 0
   m_Name: Colider
-  m_TagString: CookingArea
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041622181948049
 Transform:
@@ -137,8 +137,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25362396, y: 0.13150871}
-  m_Size: {x: 2.0029564, y: 2.3974829}
+  m_Offset: {x: 0.31793737, y: 0.1548959}
+  m_Size: {x: 0.9154749, y: 1.3918548}
   m_Direction: 0
 --- !u!1 &1992041622209807991
 GameObject:
@@ -154,7 +154,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041622209807990
 Transform:
@@ -184,7 +184,7 @@ GameObject:
   m_TagString: CookingInventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041622232135551
 Transform:
@@ -215,7 +215,7 @@ GameObject:
   m_TagString: CookingInventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041622270608806
 Transform:
@@ -249,7 +249,7 @@ GameObject:
   m_TagString: CookingInventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041622343636762
 Transform:
@@ -276,12 +276,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1992041622690818790}
   - component: {fileID: 1992041622690818789}
+  - component: {fileID: 2343563622155093317}
+  - component: {fileID: 2486440114668173942}
   m_Layer: 0
   m_Name: CookingArea
   m_TagString: CookingArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041622690818790
 Transform:
@@ -316,6 +318,75 @@ MonoBehaviour:
   CookingAreaPanel: {fileID: 0}
   foodData: {fileID: 11400000, guid: c2fb9bf61f6fa9c4daf8ab5ce5059b43, type: 2}
   foodObj: {fileID: 1449242965637398501, guid: a19a3fc4783ee4a42a80d9118460b8d3, type: 3}
+--- !u!1839735485 &2343563622155093317
+Tilemap:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992041622690818791}
+  m_Enabled: 1
+  m_Tiles: {}
+  m_AnimatedTiles: {}
+  m_TileAssetArray: []
+  m_TileSpriteArray: []
+  m_TileMatrixArray: []
+  m_TileColorArray: []
+  m_TileObjectToInstantiateArray: []
+  m_AnimationFrameRate: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Origin: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0, y: 0, z: 1}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileOrientation: 0
+  m_TileOrientationMatrix:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+--- !u!60 &2486440114668173942
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992041622690818791}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.42096043, y: 1.2338672}
+      - {x: -2.1554718, y: 0.4844171}
+      - {x: -1.7514596, y: -0.89612097}
+      - {x: -0.6930255, y: -1.838032}
+      - {x: 1.1373726, y: -1.8029516}
+      - {x: 1.1615362, y: 0.6715111}
 --- !u!1 &1992041623020527437
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +403,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041623020527436
 Transform:
@@ -423,7 +494,7 @@ GameObject:
   m_TagString: CookingInventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041623102740872
 Transform:
@@ -456,7 +527,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041623158914493
 Transform:
@@ -549,7 +620,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041623293537215
 Transform:
@@ -640,7 +711,7 @@ GameObject:
   m_TagString: CookingInventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041623916009285
 Transform:
@@ -673,7 +744,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1992041623977836096
 Transform:

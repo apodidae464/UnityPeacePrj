@@ -12,6 +12,7 @@ TagManager:
   - CookingInventory
   - Food
   - PlayerFood
+  - Menu
   layers:
   - Default
   - TransparentFX

@@ -26,11 +26,13 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
+        GameEvents.isStart = true;
         isOver = false;
         turnOffCookingArea();
         turnOffGameoverAreaPanel();
 
         GameEvents.instance.alertOver += setOver;
+        GameEvents.instance.cookingAreaMenu += TriggerCookingPopup;
     }
 
     private void Update()
@@ -59,6 +61,10 @@ public class UIController : MonoBehaviour
         íntance.GameoverAreaPanel.SetActive(false);
     }
 
+    public void TriggerCookingPopup()
+    {
+        CookingAreaPanel.SetActive(true);
+    }
   
     public void setOver()
     {
@@ -68,6 +74,7 @@ public class UIController : MonoBehaviour
     private void OnDestroy()
     {
         GameEvents.instance.alertOver -= setOver;
+        GameEvents.instance.cookingAreaMenu -= TriggerCookingPopup;
 
     }
 }

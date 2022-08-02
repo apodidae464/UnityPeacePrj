@@ -22,10 +22,10 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
 		slider = this.GetComponent<Slider>();
-		slider.maxValue = AllTag.MaxHeal;
-		slider.value = AllTag.MaxHeal;
+		slider.maxValue = ConstaintValue.MaxHeal;
+		slider.value = ConstaintValue.MaxHeal;
 		fill.color = gradient.Evaluate(1f);
-		currentHeal = AllTag.MaxHeal;
+		currentHeal = ConstaintValue.MaxHeal;
 
 		GameEvents.instance.OnIncreaseHealBarByCustomer += MoodIndexIncreaseByCustomer;
 		GameEvents.instance.OnDecreaseHealBarByCustomer += MoodIndexDecreaseByCustomer;
@@ -47,17 +47,17 @@ public class HealthBar : MonoBehaviour
 			//GameOver BLOOM!
 			//GameCore.Instance.Restart();
 		} else 
-		if (currentHeal > AllTag.MaxHeal)
+		if (currentHeal > ConstaintValue.MaxHeal)
 		{
-			currentHeal = AllTag.MaxHeal;
-		} else if (currentHeal <= AllTag.UnHappyPoint)
+			currentHeal = ConstaintValue.MaxHeal;
+		} else if (currentHeal <= ConstaintValue.UnHappyPoint)
         {
 			GameEvents.instance.ChangePeaceFace((int)faceOfPeace.CRYING);
-		} else if (currentHeal > AllTag.UnHappyPoint && currentHeal <= AllTag.NormalPoint)
+		} else if (currentHeal > ConstaintValue.UnHappyPoint && currentHeal <= ConstaintValue.NormalPoint)
         {
 			GameEvents.instance.ChangePeaceFace((int)faceOfPeace.UNHAPPY);
 		}
-		else if (currentHeal > AllTag.NormalPoint && currentHeal <= AllTag.HappyPoint)
+		else if (currentHeal > ConstaintValue.NormalPoint && currentHeal <= ConstaintValue.HappyPoint)
         {
 			GameEvents.instance.ChangePeaceFace((int)faceOfPeace.NORMAL);
 		}
@@ -71,12 +71,12 @@ public class HealthBar : MonoBehaviour
 	}
 	public void MoodIndexDecreaseByCustomer()
 	{
-		currentHeal -= AllTag.CustomerReduceHealt;
+		currentHeal -= ConstaintValue.CustomerReduceHealt;
 	}
 
 	public void MoodIndexIncreaseByCustomer()
 	{
-		currentHeal += AllTag.CustomerIncreaseHealt;
+		currentHeal += ConstaintValue.CustomerIncreaseHealt;
 	}
 
 	public void MoodIndexIncrease(float value)

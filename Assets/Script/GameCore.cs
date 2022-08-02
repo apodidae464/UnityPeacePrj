@@ -82,6 +82,11 @@ public class GameCore : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnClickPopuOnClickonPopupInCustomer(GameObject Customer)
+    {
+        Customer.GetComponent<Customer>().OnClickonPopupInCustomer();
+    }
+
     private void LoadFoodDatatoList()
     {
         foreach (var foodType in foodData.FoodTypeList)

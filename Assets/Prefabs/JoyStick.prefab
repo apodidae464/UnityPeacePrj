@@ -67,10 +67,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2116798723
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a53f0c3d4fff4964282c64e4d848ceee, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_Size: {x: 8.35, y: 8.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1703589012474270917
@@ -106,8 +106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703589012474270917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.80339, y: 7.8566403, z: 1.4279505}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 68.80339, y: 7.8566403, z: 1.428}
+  m_LocalScale: {x: 6.9395366, y: 6.9395366, z: 1}
   m_Children: []
   m_Father: {fileID: 1703589012640844042}
   m_RootOrder: 1
@@ -148,10 +148,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2116798723
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e24bbb3d983e57d47899fad3e67050d9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_Size: {x: 5.82, y: 5.82}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1703589012640844043
@@ -185,7 +185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703589012640844043}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.06, y: -1.37, z: -0.4709843}
   m_LocalScale: {x: 0.32983238, y: 0.32983238, z: 0.32983238}
   m_Children:

@@ -22,6 +22,8 @@ public class CookingArea : MonoBehaviour
     static bool[] isObjectFull = new bool[] { false, false, false, false };
     static Transform[] FoodTranformsList = new Transform[4];
 
+    bool canClickFood;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -44,11 +46,14 @@ public class CookingArea : MonoBehaviour
         FoodTranformsList[1] = instance.Transform1;
         FoodTranformsList[2] = instance.Transform2;
         FoodTranformsList[3] = instance.Transform3;
+
+        GameEvents.instance.ClickFoodinCookingArea += OnClickFoodinCookingArea;
     }
 
     public void OnClickFoodinCookingArea(GameObject hit)
     {
-        GameEvents.instance.AddFoodToInventory(hit);
+        if (!canClickFood)
+            return;
         int index = int.Parse(hit.name);
         isObjectFull[index] = false;
         instance.numFoodGameObjects--;
@@ -152,6 +157,28 @@ public class CookingArea : MonoBehaviour
         FoodGameObjects[instance.numFoodGameObjects].GetComponent<Transform>().position = FoodTranformsList[index].position;
         isObjectFull[index] = true;
         instance.numFoodGameObjects++;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == ConstaintValue.Player)
+        {
+            canClickFood = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == ConstaintValue.Player)
+        {
+            canClickFood = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.instance.ClickFoodinCookingArea -= OnClickFoodinCookingArea;
+
     }
 
 }

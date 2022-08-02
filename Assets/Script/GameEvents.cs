@@ -5,7 +5,7 @@ using System;
 
 public class GameEvents : MonoBehaviour
 {
-
+    public static bool isStart;
     public static GameEvents instance;
 
     // Start is called before the first frame update
@@ -13,6 +13,7 @@ public class GameEvents : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        isStart = false;
     }
 
 
@@ -42,12 +43,6 @@ public class GameEvents : MonoBehaviour
         onHealBarDecreasing?.Invoke(value);
     }
 
-    public event Action<GameObject> addFood;
-    public void AddFoodToInventory(GameObject g)
-    {
-        addFood?.Invoke(g);
-    }
-
     public event Action alertOver;
     public void AlertGameOver()
     {
@@ -58,6 +53,51 @@ public class GameEvents : MonoBehaviour
     public void ChangePeaceFace(int id)
     {
         peaceFace?.Invoke(id);
+    }
+
+    //input
+
+    public event Action fistPopup;
+    public void TriggerFirstPopup()
+    {
+        fistPopup?.Invoke();
+    }
+
+    public event Action<GameObject> ClickFoodinCookingArea;
+    public void OnClickFoodinCookingArea(GameObject hit)
+    {
+        ClickFoodinCookingArea?.Invoke(hit);
+    }
+
+    public event Action<GameObject> addFood;
+    public void AddFoodToInventory(GameObject g)
+    {
+        addFood?.Invoke(g);
+    }
+
+    public event Action cookingAreaMenu;
+    public void CanTriggerCookingMenu()
+    {
+        cookingAreaMenu?.Invoke();
+    }
+
+    public event Action<RaycastHit2D> givingFood;
+    public void OnGivingFoodToCustomer(RaycastHit2D hit)
+    {
+        givingFood?.Invoke(hit);
+    }
+
+    public event Action resetInventory;
+    public void OnResetInventory()
+    {
+        resetInventory?.Invoke();
+    }
+    //movement
+
+    public event Action<bool> inObject;
+    public void setPlayerInObject(bool value)
+    {
+        inObject?.Invoke(value);
     }
 }
 

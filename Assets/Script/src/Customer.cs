@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour
     public GameObject OrderPopup;
     private bool isTakenOrder = false;
 
+    private bool canTrigger;
     private void Awake()
     {
     }
@@ -26,6 +27,7 @@ public class Customer : MonoBehaviour
         OrderPopup.SetActive(false);
 
         PlayerOrderFood.name = GameCore.Instance._FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
+        GameEvents.instance.fistPopup += TriggerFirstPopup;
     }
 
     public void OnClickonPopupInCustomer()
@@ -41,6 +43,7 @@ public class Customer : MonoBehaviour
         {
             StartCoroutine(ShowEndPopupCoroutine());
         }
+
     }
 
     private IEnumerator ShowFirstPopupCoroutine()
@@ -66,5 +69,36 @@ public class Customer : MonoBehaviour
             yield return new WaitForSeconds(1);
             GameEvents.instance.DecreaseHealBarByCustomer();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == ConstaintValue.Player)
+        {
+            canTrigger = true;
+        }    
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == ConstaintValue.Player)
+        {
+            canTrigger = false;
+        }
+    }
+
+    private void TriggerFirstPopup()
+    {
+        if (!canTrigger)
+            return;
+        Debug.Log("I'm hitting first popup");
+        gameObject.transform.Find("FirstPopup").gameObject.SetActive(false);
+        gameObject.GetComponent<Customer>().OrderPopup.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.instance.fistPopup -= TriggerFirstPopup;
+
     }
 }

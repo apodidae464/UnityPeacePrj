@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public bool[] InventoryFoodTranformFull = new bool[2] { false, false };
     public Transform[] InventoryFoodTranform = new Transform[2];
 
+    bool canPickFood;
+    bool canGiveFood;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         GameEvents.instance.addFood += addFoodInInventory;
+        GameEvents.instance.givingFood += OnGivingFood;
+        GameEvents.instance.resetInventory += ResetInventory;
     }
 
     //How to get method in Player
@@ -45,7 +49,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, AllTag.PlayerGizmosRange);
+        Gizmos.DrawWireSphere(transform.position, ConstaintValue.PlayerGizmosRange);
     }
 
     private void Update()
@@ -55,12 +59,14 @@ public class Player : MonoBehaviour
 
     public void addFoodInInventory(GameObject food)
     {
+        if (!canPickFood)
+            return;
         GameObject g;
         switch (InventoryPlayerList.Count)
         {
             case 0:
                 g = Instantiate(food);
-                g.tag = AllTag.PlayerFood;
+                g.tag = ConstaintValue.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[0].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
@@ -69,7 +75,7 @@ public class Player : MonoBehaviour
 
             case 1:
                 g = Instantiate(food);
-                g.tag = AllTag.PlayerFood;
+                g.tag = ConstaintValue.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[1].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
@@ -98,9 +104,72 @@ public class Player : MonoBehaviour
         InventoryPlayerList.Clear();
     }
 
+    public void OnGivingFood(RaycastHit2D hit)
+    {
+        if (!canGiveFood)
+            return;
+        if (InventoryPlayerList.Count > 0)
+        {
+            if (InventoryPlayerList.Count == 1)
+            {
+                Debug.Log("1 slot in player inventory");
+                if (InventoryPlayerList[0].GetComponent<Food>()._foodType.name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)
+                {
+                    Destroy(InventoryPlayerList[0]);
+                    InventoryPlayerList.Clear();
+                    GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
+                    GameCore.Instance.OnClickPopuOnClickonPopupInCustomer(Customer);
+                }
+            }
+            if (Player.instance.InventoryPlayerList.Count == 2)
+            {
+                Debug.Log("2 slot in player inventory");
+                for (int i = 0; i < InventoryPlayerList.Count; i++)
+                {
+                    if (InventoryPlayerList[i].GetComponent<Food>()._foodType.name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)
+                    {
+                        Destroy(InventoryPlayerList[i]);
+                        InventoryPlayerList.Remove(InventoryPlayerList[i]);
+                        GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
+                        GameCore.Instance.OnClickPopuOnClickonPopupInCustomer(Customer);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == ConstaintValue.CookingArea)
+        {
+            canPickFood = true;
+        }
+        
+        if(collision.tag == ConstaintValue.Customer)
+        {
+            canGiveFood = true;
+        }    
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == ConstaintValue.CookingArea)
+        {
+            canPickFood = false;
+        }
+        if (collision.tag == ConstaintValue.Customer)
+        {
+            canGiveFood = false;
+        }
+    }
+
     private void OnDestroy()
     {
         GameEvents.instance.addFood -= addFoodInInventory;
+        GameEvents.instance.givingFood -= OnGivingFood;
+        GameEvents.instance.resetInventory -= ResetInventory;
+
 
     }
 }

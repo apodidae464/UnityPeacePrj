@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-public class AllTag : MonoBehaviour
+public class ConstaintValue
 {
     public static string Player = "Player";
     public static string Popup = "Popup";
     public static string CookingArea = "CookingArea";
+    public static string CookingMenu = "Menu";
     public static string Customer = "Customer";
     public static string Cleaner = "Cleaner";
     public static string FirstPopup = "FirstPopup";
