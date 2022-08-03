@@ -54,6 +54,7 @@ public class CustommerSpammer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(GameCore.Instance.respawnTime - 1f, GameCore.Instance.respawnTime + 1f));
+            GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_bell);
             spawnCustomer();
         }
     }

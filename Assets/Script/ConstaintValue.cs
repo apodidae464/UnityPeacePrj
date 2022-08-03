@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ConstaintValue
+public class Constaint
 {
     public static string Player = "Player";
     public static string Popup = "Popup";
@@ -11,6 +11,13 @@ public class ConstaintValue
     public static string FirstPopup = "FirstPopup";
     public static string Food = "Food";
     public static string PlayerFood = "PlayerFood";
+
+    public static int Vfx_walking = 0;
+    public static int Vfx_bell = 1;
+    public static int Vfx_click = 2;
+    public static int Vfx_drop = 3;
+    public static int Vfx_finish = 4;
+    public static int Vfx_clear = 5;
 
     public static float PlayerSpeed = 5.0f;
     public static float CameraSmoothSpeed = 2.0f;
@@ -28,6 +35,5 @@ public class ConstaintValue
     public static float HealerValue = 1f;
     public static float RedObjGizmosRange = 1f;
     public static float RedObjDamage = 1f;
-
 
 }

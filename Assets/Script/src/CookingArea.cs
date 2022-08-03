@@ -52,6 +52,7 @@ public class CookingArea : MonoBehaviour
 
     public void OnClickFoodinCookingArea(GameObject hit)
     {
+
         if (!canClickFood)
             return;
         int index = int.Parse(hit.name);
@@ -161,7 +162,7 @@ public class CookingArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == ConstaintValue.Player)
+        if(collision.tag == Constaint.Player)
         {
             canClickFood = true;
         }
@@ -169,7 +170,7 @@ public class CookingArea : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == ConstaintValue.Player)
+        if (collision.tag == Constaint.Player)
         {
             canClickFood = false;
         }

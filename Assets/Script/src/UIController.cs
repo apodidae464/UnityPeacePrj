@@ -26,7 +26,6 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        GameEvents.isStart = true;
         isOver = false;
         turnOffCookingArea();
         turnOffGameoverAreaPanel();
@@ -48,6 +47,7 @@ public class UIController : MonoBehaviour
 
     public void turnOffGamestartArea()
     {
+        GameEvents.isStart = true;
         íntance.GamestartAreaPanel.SetActive(false);
     }
 
@@ -63,6 +63,8 @@ public class UIController : MonoBehaviour
 
     public void TriggerCookingPopup()
     {
+        if (!GameEvents.isStart)
+            return;
         CookingAreaPanel.SetActive(true);
     }
   

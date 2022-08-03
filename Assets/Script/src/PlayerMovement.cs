@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!GameEvents.isStart)
+            return;
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)
         {
             pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
@@ -62,7 +64,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void moveCharacter(Vector2 direction)
     {
-        player.Translate(direction * ConstaintValue.PlayerSpeed * Time.deltaTime);
+        player.Translate(direction * Constaint.PlayerSpeed * Time.deltaTime);
+       // GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_walking); will trigger at animation
     }
 
     void SetInObject(bool value)

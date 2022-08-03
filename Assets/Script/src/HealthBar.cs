@@ -22,10 +22,10 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
 		slider = this.GetComponent<Slider>();
-		slider.maxValue = ConstaintValue.MaxHeal;
-		slider.value = ConstaintValue.MaxHeal;
+		slider.maxValue = Constaint.MaxHeal;
+		slider.value = Constaint.MaxHeal;
 		fill.color = gradient.Evaluate(1f);
-		currentHeal = ConstaintValue.MaxHeal;
+		currentHeal = Constaint.MaxHeal;
 
 		GameEvents.instance.OnIncreaseHealBarByCustomer += MoodIndexIncreaseByCustomer;
 		GameEvents.instance.OnDecreaseHealBarByCustomer += MoodIndexDecreaseByCustomer;
@@ -41,23 +41,24 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
+		currentHeal = Constaint.MaxHeal;
 		if (currentHeal <= 0)
 		{
 			GameEvents.instance.AlertGameOver();
 			//GameOver BLOOM!
 			//GameCore.Instance.Restart();
 		} else 
-		if (currentHeal > ConstaintValue.MaxHeal)
+		if (currentHeal > Constaint.MaxHeal)
 		{
-			currentHeal = ConstaintValue.MaxHeal;
-		} else if (currentHeal <= ConstaintValue.UnHappyPoint)
+			currentHeal = Constaint.MaxHeal;
+		} else if (currentHeal <= Constaint.UnHappyPoint)
         {
 			GameEvents.instance.ChangePeaceFace((int)faceOfPeace.CRYING);
-		} else if (currentHeal > ConstaintValue.UnHappyPoint && currentHeal <= ConstaintValue.NormalPoint)
+		} else if (currentHeal > Constaint.UnHappyPoint && currentHeal <= Constaint.NormalPoint)
         {
 			GameEvents.instance.ChangePeaceFace((int)faceOfPeace.UNHAPPY);
 		}
-		else if (currentHeal > ConstaintValue.NormalPoint && currentHeal <= ConstaintValue.HappyPoint)
+		else if (currentHeal > Constaint.NormalPoint && currentHeal <= Constaint.HappyPoint)
         {
 			GameEvents.instance.ChangePeaceFace((int)faceOfPeace.NORMAL);
 		}
@@ -71,12 +72,12 @@ public class HealthBar : MonoBehaviour
 	}
 	public void MoodIndexDecreaseByCustomer()
 	{
-		currentHeal -= ConstaintValue.CustomerReduceHealt;
+		currentHeal -= Constaint.CustomerReduceHealt;
 	}
 
 	public void MoodIndexIncreaseByCustomer()
 	{
-		currentHeal += ConstaintValue.CustomerIncreaseHealt;
+		currentHeal += Constaint.CustomerIncreaseHealt;
 	}
 
 	public void MoodIndexIncrease(float value)

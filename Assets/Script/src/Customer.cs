@@ -75,7 +75,7 @@ public class Customer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == ConstaintValue.Player)
+        if(collision.tag == Constaint.Player)
         {
             canTrigger = true;
         }    
@@ -83,7 +83,7 @@ public class Customer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == ConstaintValue.Player)
+        if (collision.tag == Constaint.Player)
         {
             canTrigger = false;
         }

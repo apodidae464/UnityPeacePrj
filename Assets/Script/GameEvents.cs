@@ -99,6 +99,20 @@ public class GameEvents : MonoBehaviour
     {
         inObject?.Invoke(value);
     }
+
+    //sound
+
+    public event Action playingBgm;
+    public void PlayBgm()
+    {
+        playingBgm?.Invoke();
+    }
+
+    public event Action<int> triggerSoundEffect;
+    public void OnTriggerSoundEffect(int value)
+    {
+        triggerSoundEffect?.Invoke(value);
+    }
 }
 
 

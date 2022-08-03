@@ -9,12 +9,12 @@ public class RedObj : MonoBehaviour
     private void inRange()
     {
         StartCoroutine(WaitSomeSecond(1));
-        GameEvents.instance.HealBarDecrease(ConstaintValue.RedObjDamage * 0.01f);
+        GameEvents.instance.HealBarDecrease(Constaint.RedObjDamage * 0.01f);
     }
 
     private void Update()
     {
-        if (Vector2.Distance(Player.instance.GetPosition(), gameObject.transform.position) <= ConstaintValue.RedObjGizmosRange)
+        if (Vector2.Distance(Player.instance.GetPosition(), gameObject.transform.position) <= Constaint.RedObjGizmosRange)
         {
             isInrange = true;
         }
@@ -33,7 +33,7 @@ public class RedObj : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, ConstaintValue.RedObjGizmosRange);
+        Gizmos.DrawWireSphere(transform.position, Constaint.RedObjGizmosRange);
     }
     private IEnumerator WaitSomeSecond(int value)
     {

@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, ConstaintValue.PlayerGizmosRange);
+        Gizmos.DrawWireSphere(transform.position, Constaint.PlayerGizmosRange);
     }
 
     private void Update()
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         {
             case 0:
                 g = Instantiate(food);
-                g.tag = ConstaintValue.PlayerFood;
+                g.tag = Constaint.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[0].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
 
             case 1:
                 g = Instantiate(food);
-                g.tag = ConstaintValue.PlayerFood;
+                g.tag = Constaint.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[1].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
@@ -135,16 +135,18 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_finish);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == ConstaintValue.CookingArea)
+        if(collision.tag == Constaint.CookingArea)
         {
             canPickFood = true;
         }
         
-        if(collision.tag == ConstaintValue.Customer)
+        if(collision.tag == Constaint.Customer)
         {
             canGiveFood = true;
         }    
@@ -152,11 +154,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == ConstaintValue.CookingArea)
+        if (collision.tag == Constaint.CookingArea)
         {
             canPickFood = false;
         }
-        if (collision.tag == ConstaintValue.Customer)
+        if (collision.tag == Constaint.Customer)
         {
             canGiveFood = false;
         }
