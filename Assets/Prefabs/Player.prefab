@@ -233,6 +233,8 @@ MonoBehaviour:
   InventoryFoodTranform:
   - {fileID: 0}
   - {fileID: 0}
+  level: 
+  point: 0
   currentLevel: 0
 --- !u!114 &2468065432820096805
 MonoBehaviour:

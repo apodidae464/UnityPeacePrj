@@ -12,8 +12,9 @@ public class InputController : MonoBehaviour
     }
     private void Update()
     {
-        
 
+        if (GameEvents.isPause)
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             if (Input.touchCount > 0)

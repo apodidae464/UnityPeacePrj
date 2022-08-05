@@ -35,6 +35,8 @@ public class Table : MonoBehaviour
     {
         if (!GameEvents.isStart)
             return;
+        if (GameEvents.isPause)
+            return;
         position = this.transform.position;
         if (shouldActiveCustomer)
         {
@@ -72,6 +74,8 @@ public class Table : MonoBehaviour
     {
         shouldActiveCustomer = value;
     }
+
+    
 
     private void OnDestroy()
     {

@@ -41,6 +41,8 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
+		if (GameEvents.isPause)
+			return;
 		//currentHeal = Constaint.MaxHeal;
 		if (currentHeal <= 0)
 		{

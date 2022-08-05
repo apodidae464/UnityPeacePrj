@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         InventoryFoodTranform[0] = instance.transform.Find("Inventory1").transform;
         InventoryFoodTranform[1] = instance.transform.Find("Inventory2").transform;
 
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -75,10 +75,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         GameCore.Instance.point = point;
-        if (level == Constaint.Level_1 && point > 0)
+        if (level == Constaint.Level_1 && point > Constaint.Pass_Lv1)
         {
             level = Constaint.Level_2;
-            SceneManager.LoadScene(Constaint.Level_2);
+            GameCore.Instance.PrepareLoadNextScene(level);
         }
     }
 

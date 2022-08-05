@@ -6,6 +6,7 @@ using System;
 public class GameEvents : MonoBehaviour
 {
     public static bool isStart;
+    public static bool isPause;
     public static GameEvents instance;
 
     // Start is called before the first frame update
@@ -18,9 +19,9 @@ public class GameEvents : MonoBehaviour
 
     private void Start()
     {
-       
+        isPause = false;
         isStart = false;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
 
     public event Action OnIncreaseHealBarByCustomer;

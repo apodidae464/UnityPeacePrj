@@ -14,6 +14,7 @@ TagManager:
   - PlayerFood
   - Menu
   - NextLevel
+  - Table
   layers:
   - Default
   - TransparentFX

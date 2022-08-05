@@ -5,8 +5,12 @@ public class Constaint
 
     //Scene
     public static string Level_1 = "Start";
+    public static int Pass_Lv1 = 1;
     public static string Level_2 = "Level_2";
+    public static int Pass_Lv2 = 11;
     public static string Level_3 = "Level_3";
+    public static int Pass_Lv3 = 121;
+
 
     //Content
     public static string Player = "Player";
@@ -19,6 +23,7 @@ public class Constaint
     public static string EndPopup = "EndPopup";
     public static string Food = "Food";
     public static string PlayerFood = "PlayerFood";
+    public static string Table = "Table";
 
     //food
     public static string Food_0 = "Cheese";
@@ -27,6 +32,11 @@ public class Constaint
     public static int Food_1_Value = 2;
     public static string Food_2 = "Sauce";
     public static int Food_2_Value = 3;
+
+    //shop
+    public static int Table_value = 1;
+    public static int Tree_value = 5;
+
 
 
     public static int Vfx_walking = 0;
