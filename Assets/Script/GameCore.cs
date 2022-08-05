@@ -42,9 +42,5 @@ public class GameCore : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnClickPopuOnClickonPopupInCustomer(GameObject Customer)
-    {
-        Customer.GetComponent<Customer>().OnClickonPopupInCustomer();
-    }
 
 }

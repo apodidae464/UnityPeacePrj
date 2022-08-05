@@ -24,6 +24,7 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         GameEvents.instance.fistPopup += TriggerFirstPopup;
+        GameEvents.instance.clickOnCCPopup += OnClickonPopupInCustomer;
         LoadFoodDatatoList();
         firstPopup.SetActive(false);
         endPopup.SetActive(false);
@@ -140,5 +141,7 @@ public class Customer : MonoBehaviour
     private void OnDestroy()
     {
         GameEvents.instance.fistPopup -= TriggerFirstPopup;
+        GameEvents.instance.clickOnCCPopup -= OnClickonPopupInCustomer;
+
     }
 }

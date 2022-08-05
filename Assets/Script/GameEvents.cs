@@ -92,6 +92,14 @@ public class GameEvents : MonoBehaviour
     {
         resetInventory?.Invoke();
     }
+
+    public event Action clickOnCCPopup;
+    public void onClickOnCCPopup()
+    {
+        clickOnCCPopup?.Invoke();
+    }
+
+
     //movement
 
     public event Action<bool> inObject;

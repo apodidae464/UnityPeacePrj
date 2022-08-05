@@ -118,8 +118,8 @@ public class Player : MonoBehaviour
                 {
                     Destroy(InventoryPlayerList[0]);
                     InventoryPlayerList.Clear();
-                    GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
-                    GameCore.Instance.OnClickPopuOnClickonPopupInCustomer(Customer);
+                   // GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
+                    GameEvents.instance.onClickOnCCPopup();
                 }
             }
             if (Player.instance.InventoryPlayerList.Count == 2)
@@ -130,8 +130,9 @@ public class Player : MonoBehaviour
                     {
                         Destroy(InventoryPlayerList[i]);
                         InventoryPlayerList.Remove(InventoryPlayerList[i]);
-                        GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
-                        GameCore.Instance.OnClickPopuOnClickonPopupInCustomer(Customer);
+                      //  GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
+                        GameEvents.instance.onClickOnCCPopup();
+
                         break;
                     }
                 }
