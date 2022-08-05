@@ -12,9 +12,15 @@ public class GameEvents : MonoBehaviour
 
     private void Awake()
     {
-        if(!instance)
+        if (!instance)
             instance = this;
+    }
+
+    private void Start()
+    {
+       
         isStart = false;
+        DontDestroyOnLoad(this);
     }
 
     public event Action OnIncreaseHealBarByCustomer;

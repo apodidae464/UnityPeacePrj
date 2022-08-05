@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (Player.instance.level != Constaint.Level_1)
+            GameEvents.isStart = true;
         if (!GameEvents.isStart)
             return;
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isInObject)

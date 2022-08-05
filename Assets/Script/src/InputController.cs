@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class InputController : MonoBehaviour
 {
     public static InputController instance;
@@ -13,6 +12,8 @@ public class InputController : MonoBehaviour
     }
     private void Update()
     {
+        
+
         if (Input.GetMouseButtonDown(0))
         {
             if (Input.touchCount > 0)

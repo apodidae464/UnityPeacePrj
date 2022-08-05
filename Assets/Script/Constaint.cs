@@ -2,6 +2,13 @@
 
 public class Constaint
 {
+
+    //Scene
+    public static string Level_1 = "Start";
+    public static string Level_2 = "Level_2";
+    public static string Level_3 = "Level_3";
+
+    //Content
     public static string Player = "Player";
     public static string Popup = "Popup";
     public static string CookingArea = "CookingArea";
@@ -12,6 +19,15 @@ public class Constaint
     public static string EndPopup = "EndPopup";
     public static string Food = "Food";
     public static string PlayerFood = "PlayerFood";
+
+    //food
+    public static string Food_0 = "Cheese";
+    public static int Food_0_Value = 1;
+    public static string Food_1 = "Banana";
+    public static int Food_1_Value = 2;
+    public static string Food_2 = "Sauce";
+    public static int Food_2_Value = 3;
+
 
     public static int Vfx_walking = 0;
     public static int Vfx_bell = 1;

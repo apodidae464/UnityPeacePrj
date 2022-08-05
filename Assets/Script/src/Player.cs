@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class Player : MonoBehaviour
     bool canPickFood;
     bool canGiveFood;
 
-    public int level;
+    public string level;
+    public int point;
+
+    public int currentLevel;
+    Transform begin;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -25,6 +30,8 @@ public class Player : MonoBehaviour
         }
         InventoryFoodTranform[0] = instance.transform.Find("Inventory1").transform;
         InventoryFoodTranform[1] = instance.transform.Find("Inventory2").transform;
+
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -32,7 +39,18 @@ public class Player : MonoBehaviour
         GameEvents.instance.addFood += addFoodInInventory;
         GameEvents.instance.givingFood += OnGivingFood;
         GameEvents.instance.resetInventory += ResetInventory;
+        level = PlayerPrefs.GetString("Level");
+        if(level == "")
+        {
+            level = Constaint.Level_1;
+        }
+        point = PlayerPrefs.GetInt("Point");
+        if(point <= 0)
+        {
+            point = 0;
+        }
     }
+
 
     //How to get method in Player
     //Player.Instance.MethodName(Param1,Param2);
@@ -42,7 +60,7 @@ public class Player : MonoBehaviour
     //Max = 100, Min = 0
 
     //Method
-    
+
     public Vector3 GetPosition()
     {
         return transform.position;
@@ -56,11 +74,17 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-       
+        GameCore.Instance.point = point;
+        if (level == Constaint.Level_1 && point > 0)
+        {
+            level = Constaint.Level_2;
+            SceneManager.LoadScene(Constaint.Level_2);
+        }
     }
 
     public void addFoodInInventory(GameObject food)
     {
+        
         if (!canPickFood)
             return;
         GameObject g;
@@ -114,8 +138,11 @@ public class Player : MonoBehaviour
         {
             if (InventoryPlayerList.Count == 1)
             {
-                if (InventoryPlayerList[0].GetComponent<Food>()._foodType.name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)
+                string name = InventoryPlayerList[0].GetComponent<Food>()._foodType.name;
+
+                if (name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)
                 {
+                    addPoint(name);
                     Destroy(InventoryPlayerList[0]);
                     InventoryPlayerList.Clear();
                    // GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
@@ -126,8 +153,10 @@ public class Player : MonoBehaviour
             {
                 for (int i = 0; i < InventoryPlayerList.Count; i++)
                 {
+                    string name = InventoryPlayerList[i].GetComponent<Food>()._foodType.name;
                     if (InventoryPlayerList[i].GetComponent<Food>()._foodType.name == hit.collider.gameObject.transform.GetComponentInParent<Customer>().PlayerOrderFood.name)
                     {
+                        addPoint(name);
                         Destroy(InventoryPlayerList[i]);
                         InventoryPlayerList.Remove(InventoryPlayerList[i]);
                       //  GameObject Customer = hit.collider.gameObject.transform.parent.gameObject;
@@ -152,6 +181,25 @@ public class Player : MonoBehaviour
         {
             canGiveFood = true;
         }    
+
+        if(collision.tag == "NextLevel")
+        {
+           
+        }
+    }
+
+    private void addPoint(string name)
+    {
+        if (name == Constaint.Food_0)
+        {
+            point += Constaint.Food_0_Value;
+        }
+        else if (name == Constaint.Food_1)
+        {
+            point += Constaint.Food_1_Value;
+        }
+        else
+            point += Constaint.Food_2_Value;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

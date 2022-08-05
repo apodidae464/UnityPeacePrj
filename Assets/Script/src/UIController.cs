@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UIController : MonoBehaviour
     public GameObject CookingAreaPanel;
     public GameObject GameoverAreaPanel;
     public GameObject GamestartAreaPanel;
+    public Text point;
 
     private bool isOver;
 
@@ -36,7 +38,8 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if(isOver)
+        point.text = "Money: " + GameCore.Instance.point;
+        if (isOver)
         {
             GameoverAreaPanel.SetActive(true);
             //do st

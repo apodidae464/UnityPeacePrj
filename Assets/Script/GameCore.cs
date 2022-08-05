@@ -7,9 +7,10 @@ public class GameCore : MonoBehaviour
 {
     public static GameCore Instance { get; private set; }
     public int numOfCustommer = 0;
+    public int point;
 
 
-   
+
 
     private void Awake()
     {

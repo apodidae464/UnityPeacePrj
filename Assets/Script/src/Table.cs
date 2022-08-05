@@ -10,6 +10,7 @@ public class Table : MonoBehaviour
 
     float spawnDuration;
     bool canSpawn;
+    bool inActive;
 
     public void Awake()
     {
@@ -38,18 +39,20 @@ public class Table : MonoBehaviour
         if (shouldActiveCustomer)
         {
             spawnDuration -= Time.deltaTime;
+            if (spawnDuration < 0)
+            {
+                shouldActiveCustomer = false;
+                canSpawn = true;
+            }
+
         }
 
-        if (spawnDuration < 0)
+
+        if (inActive && !cc.activeInHierarchy)
         {
             spawnDuration = Random.Range(Constaint.minWaitingTimeCCSpawn, Constaint.maxWaitingTimeCCSpawn);
-            shouldActiveCustomer = false;
-            canSpawn = true;
-        }
-
-        if(!cc.activeInHierarchy)
-        {
             shouldActiveCustomer = true;
+            inActive = false;
         }
     }
 
@@ -61,6 +64,7 @@ public class Table : MonoBehaviour
             cc.GetComponent<Customer>().OnCustomerActive();
             GameCore.Instance.numOfCustommer++;
             canSpawn = false;
+            inActive = true;
         }
     }
 

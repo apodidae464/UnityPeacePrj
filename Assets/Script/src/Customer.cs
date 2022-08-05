@@ -5,7 +5,7 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     public FoodData.FoodType PlayerOrderFood = new FoodData.FoodType();
-    public GameObject OrderPopup;
+    public GameObject[] OrderPopup;
     public GameObject firstPopup;
     public GameObject endPopup;
 
@@ -14,46 +14,50 @@ public class Customer : MonoBehaviour
     public FoodData foodData;
     public GameObject _CustomerPopup;
 
-    
-
+    private int temp;
     private bool canTrigger;
+    bool fistActive = false;
     private void Awake()
     {
     }
 
     private void Start()
     {
-        GameEvents.instance.fistPopup += TriggerFirstPopup;
-        GameEvents.instance.clickOnCCPopup += OnClickonPopupInCustomer;
-        LoadFoodDatatoList();
-        firstPopup.SetActive(false);
-        endPopup.SetActive(false);
-        StartCoroutine(ShowFirstPopupCoroutine());
-        StartCoroutine(ReduceHealthCoroutine());
-
-        int randomOrderPopup = Random.Range(0, _FoodPopUpList.Count);
-        OrderPopup = Instantiate(_FoodPopUpList[randomOrderPopup]) as GameObject;
-        //OrderPopup.name = GameCore.Instance._FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
-        OrderPopup.transform.SetParent(this.transform);
-        OrderPopup.transform.position = firstPopup.transform.position;
-        OrderPopup.SetActive(false);
-
-        PlayerOrderFood.name = _FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
+       
     }
 
     public void OnCustomerActive()
     {
-        firstPopup.SetActive(true);
-        OrderPopup.SetActive(false);
+        if (!fistActive)
+        {
+
+            LoadFoodDatatoList();
+            for (int i = 0; i < _FoodPopUpList.Count; i++)
+            {
+                OrderPopup[i] = Instantiate(_FoodPopUpList[i]) as GameObject;
+                OrderPopup[i].transform.SetParent(this.transform);
+                OrderPopup[i].transform.position = firstPopup.transform.position;
+                OrderPopup[i].SetActive(false);
+            }
+            fistActive = true;
+        }
+        GameEvents.instance.fistPopup += TriggerFirstPopup;
+        GameEvents.instance.clickOnCCPopup += OnClickonPopupInCustomer;
+        firstPopup.SetActive(false);
         endPopup.SetActive(false);
+        StartCoroutine(ShowFirstPopupCoroutine());
+        StartCoroutine(ReduceHealthCoroutine());
+        temp = Random.Range(0, _FoodPopUpList.Count);
         isTakenOrder = false;
+        PlayerOrderFood.name = _FoodPopUpList[temp].GetComponent<Popup>()._foodType.name;
+
     }
 
     public void OnClickonPopupInCustomer()
     {
         if (!canTrigger)
             return;
-        OrderPopup.SetActive(false);
+        OrderPopup[temp].SetActive(false);
         isTakenOrder = true;
         GameEvents.instance.IncreaseHealBarByCumstomer();
     }
@@ -122,7 +126,7 @@ public class Customer : MonoBehaviour
             return;
         Debug.Log("I'm hitting first popup");
         firstPopup.SetActive(false);
-        OrderPopup.SetActive(true);
+        OrderPopup[temp].SetActive(true);
     }
 
     private void LoadFoodDatatoList()
