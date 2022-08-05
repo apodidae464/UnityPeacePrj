@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     bool canPickFood;
     bool canGiveFood;
+
+    public int level;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -135,7 +137,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_finish);
 
     }
 

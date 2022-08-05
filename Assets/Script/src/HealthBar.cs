@@ -41,7 +41,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-		currentHeal = Constaint.MaxHeal;
+		//currentHeal = Constaint.MaxHeal;
 		if (currentHeal <= 0)
 		{
 			GameEvents.instance.AlertGameOver();

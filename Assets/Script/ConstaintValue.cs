@@ -9,6 +9,7 @@ public class Constaint
     public static string Customer = "Customer";
     public static string Cleaner = "Cleaner";
     public static string FirstPopup = "FirstPopup";
+    public static string EndPopup = "EndPopup";
     public static string Food = "Food";
     public static string PlayerFood = "PlayerFood";
 
@@ -35,5 +36,9 @@ public class Constaint
     public static float HealerValue = 1f;
     public static float RedObjGizmosRange = 1f;
     public static float RedObjDamage = 1f;
+
+    public static float minWaitingTimeCCSpawn = 3f;
+    public static float maxWaitingTimeCCSpawn = 6f;
+
 
 }

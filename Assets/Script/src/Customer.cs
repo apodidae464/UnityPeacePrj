@@ -1,11 +1,20 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
     public FoodData.FoodType PlayerOrderFood = new FoodData.FoodType();
     public GameObject OrderPopup;
+    public GameObject firstPopup;
+    public GameObject endPopup;
+
     private bool isTakenOrder = false;
+    public List<GameObject> _FoodPopUpList;
+    public FoodData foodData;
+    public GameObject _CustomerPopup;
+
+    
 
     private bool canTrigger;
     private void Awake()
@@ -14,20 +23,29 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-        this.transform.Find("FirstPopup").gameObject.SetActive(false);
-        this.transform.Find("EndPopup").gameObject.SetActive(false);
+        GameEvents.instance.fistPopup += TriggerFirstPopup;
+        LoadFoodDatatoList();
+        firstPopup.SetActive(false);
+        endPopup.SetActive(false);
         StartCoroutine(ShowFirstPopupCoroutine());
         StartCoroutine(ReduceHealthCoroutine());
 
-        int randomOrderPopup = Random.Range(0, GameCore.Instance._FoodPopUpList.Count);
-        OrderPopup = Instantiate(GameCore.Instance._FoodPopUpList[randomOrderPopup]) as GameObject;
+        int randomOrderPopup = Random.Range(0, _FoodPopUpList.Count);
+        OrderPopup = Instantiate(_FoodPopUpList[randomOrderPopup]) as GameObject;
         //OrderPopup.name = GameCore.Instance._FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
         OrderPopup.transform.SetParent(this.transform);
-        OrderPopup.transform.position = this.transform.Find("FirstPopup").transform.position;
+        OrderPopup.transform.position = firstPopup.transform.position;
         OrderPopup.SetActive(false);
 
-        PlayerOrderFood.name = GameCore.Instance._FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
-        GameEvents.instance.fistPopup += TriggerFirstPopup;
+        PlayerOrderFood.name = _FoodPopUpList[randomOrderPopup].GetComponent<Popup>()._foodType.name;
+    }
+
+    public void OnCustomerActive()
+    {
+        firstPopup.SetActive(true);
+        OrderPopup.SetActive(false);
+        endPopup.SetActive(false);
+        isTakenOrder = false;
     }
 
     public void OnClickonPopupInCustomer()
@@ -51,16 +69,16 @@ public class Customer : MonoBehaviour
     private IEnumerator ShowFirstPopupCoroutine()
     {
         yield return new WaitForSeconds(3);
-        this.transform.Find("FirstPopup").transform.gameObject.SetActive(true);
+        firstPopup.SetActive(true);
     }
 
     private IEnumerator ShowEndPopupCoroutine()
     {
-        this.transform.Find("EndPopup").transform.gameObject.SetActive(true);
+        GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_finish);
+        endPopup.SetActive(true);
         yield return new WaitForSeconds(3);
 
-        GameCore.Instance.RemoveCustomerinArr(gameObject);
-        Destroy(gameObject);
+        DisableCustomer();
         yield return new WaitForSeconds(3);
     }
 
@@ -71,6 +89,14 @@ public class Customer : MonoBehaviour
             yield return new WaitForSeconds(1);
             GameEvents.instance.DecreaseHealBarByCustomer();
         }
+    }
+
+    private void DisableCustomer()
+    {
+
+        this.gameObject.SetActive(false);
+        GameCore.Instance.numOfCustommer--;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -94,13 +120,25 @@ public class Customer : MonoBehaviour
         if (!canTrigger)
             return;
         Debug.Log("I'm hitting first popup");
-        gameObject.transform.Find("FirstPopup").gameObject.SetActive(false);
-        gameObject.GetComponent<Customer>().OrderPopup.SetActive(true);
+        firstPopup.SetActive(false);
+        OrderPopup.SetActive(true);
+    }
+
+    private void LoadFoodDatatoList()
+    {
+        foreach (var foodType in foodData.FoodTypeList)
+        {
+            var foodTypeData = foodData.FoodTypeList.Find(data => data == foodType);
+            _FoodPopUpList.Add(Instantiate(_CustomerPopup));
+            _FoodPopUpList[_FoodPopUpList.Count - 1].name = _FoodPopUpList[_FoodPopUpList.Count - 1].name /*+ (_FoodPopUpList.Count).ToString()*/;
+            _FoodPopUpList[_FoodPopUpList.Count - 1].SetActive(false);
+            _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<Popup>().SetData(foodTypeData);
+            _FoodPopUpList[_FoodPopUpList.Count - 1].GetComponent<Transform>().position = new Vector3(Screen.width, Screen.height, 0f);
+        }
     }
 
     private void OnDestroy()
     {
         GameEvents.instance.fistPopup -= TriggerFirstPopup;
-
     }
 }
