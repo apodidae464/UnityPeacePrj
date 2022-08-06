@@ -16,30 +16,34 @@ public class Player : MonoBehaviour
     public string level;
     public int point;
 
-    public int currentLevel;
-    Transform begin;
     private void Awake()
     {
-        if (instance != null && instance != this)
+        
+    }
+
+    private void Start()
+    {
+        if (instance == null)
         {
-            Destroy(this);
+            instance = this;
+
         }
         else
         {
-            instance = this;
+            Destroy(gameObject);
         }
         InventoryFoodTranform[0] = instance.transform.Find("Inventory1").transform;
         InventoryFoodTranform[1] = instance.transform.Find("Inventory2").transform;
 
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
         GameEvents.instance.addFood += addFoodInInventory;
         GameEvents.instance.givingFood += OnGivingFood;
         GameEvents.instance.resetInventory += ResetInventory;
-        level = PlayerPrefs.GetString("Level");
+        GameEvents.instance.resetGame += OnResetGame;
+        level = Constaint.Level_1;
+        point = 0;
+       /* level = PlayerPrefs.GetString("Level");
         if(level == "")
         {
             level = Constaint.Level_1;
@@ -48,7 +52,7 @@ public class Player : MonoBehaviour
         if(point <= 0)
         {
             point = 0;
-        }
+        }*/
     }
 
 
@@ -218,11 +222,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnResetGame()
+    {
+        point = 0;
+        level = Constaint.Level_1;
+    }
+
     private void OnDestroy()
     {
         GameEvents.instance.addFood -= addFoodInInventory;
         GameEvents.instance.givingFood -= OnGivingFood;
         GameEvents.instance.resetInventory -= ResetInventory;
+        GameEvents.instance.resetGame -= OnResetGame;
 
 
     }

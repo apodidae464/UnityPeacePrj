@@ -3,6 +3,8 @@
 public class Constaint
 {
 
+    //path
+    public static string tableListPath = Application.dataPath + "/Script/Data/listTable.json";
     //Scene
     public static string Level_1 = "Start";
     public static int Pass_Lv1 = 1;
@@ -11,6 +13,12 @@ public class Constaint
     public static string Level_3 = "Level_3";
     public static int Pass_Lv3 = 121;
 
+    public static float beginTablePos1_x = -1;
+    public static float beginTablePos1_y = -1;
+    public static float beginTablePos2_x = -4;
+    public static float beginTablePos2_y = 1;
+    public static float beginTablePos3_x = 2;
+    public static float beginTablePos3_y = 1;
 
     //Content
     public static string Player = "Player";

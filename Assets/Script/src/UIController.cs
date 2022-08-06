@@ -43,6 +43,8 @@ public class UIController : MonoBehaviour
 
         GameEvents.instance.alertOver += setOver;
         GameEvents.instance.cookingAreaMenu += TriggerCookingPopup;
+        GameEvents.instance.resetGame += OnResetGame;
+
 
     }
 
@@ -91,6 +93,7 @@ public class UIController : MonoBehaviour
                     } else 
                     {
                         Instantiate(Table, pos, transform.rotation);
+                        GameEvents.instance.AddTableToData(pos.x, pos.y);
                         Player.instance.point -= Constaint.Table_value;
                         onBuyTableObject = false;
                     }
@@ -137,10 +140,14 @@ public class UIController : MonoBehaviour
         if (!keyShop)
         {
             Shop.SetActive(true);
+            GameEvents.isPause = true;
+
         }
         else
         {
             Shop.SetActive(false);
+            GameEvents.isPause = false;
+
         }
     }
 
@@ -148,6 +155,7 @@ public class UIController : MonoBehaviour
     {
         if(GameCore.Instance.point < Constaint.Table_value)
         {
+            onBuyTableObject = false;
             return;
         } else
         {
@@ -168,10 +176,16 @@ public class UIController : MonoBehaviour
         
     }
 
+    public void OnResetGame()
+    {
+        point.text = "";
+    }
+
     private void OnDestroy()
     {
         GameEvents.instance.alertOver -= setOver;
         GameEvents.instance.cookingAreaMenu -= TriggerCookingPopup;
+        GameEvents.instance.resetGame -= OnResetGame;
 
     }
 }

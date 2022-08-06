@@ -15,6 +15,8 @@ public class GameEvents : MonoBehaviour
     {
         if (!instance)
             instance = this;
+        else
+            Destroy(gameObject);
     }
 
     private void Start()
@@ -129,9 +131,25 @@ public class GameEvents : MonoBehaviour
         triggerSoundEffect?.Invoke(value);
     }
 
-    //guide popup
+    //instance table
 
-    
+    public event Action<float, float> instanceTable;
+    public void AddTableToData(float x, float y)
+    {
+        instanceTable?.Invoke(x , y);
+    }
+    //next level
+    public event Action nextLevel;
+    public void AlertNextLevel()
+    {
+        nextLevel?.Invoke();
+    }
+
+    public event Action resetGame;
+    public void AlertResetGame()
+    {
+        nextLevel?.Invoke();
+    }
 }
 
 

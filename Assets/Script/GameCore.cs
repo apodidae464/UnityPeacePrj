@@ -63,12 +63,18 @@ public class GameCore : MonoBehaviour
 
     public void LoadNextScene(string scene)
     {
+        GameEvents.instance.AlertNextLevel();
         SceneManager.LoadScene(scene);
-        
     }
 
     public void Restart()
     {
+        point = 0;
+        GameEvents.instance.AlertResetGame();
+        GameEvents.isPause = false;
+        GameEvents.isStart = false;
+        Player.instance.point = 0;
+        Player.instance.ResetInventory();
         SceneManager.LoadScene("Start");
     }
 
@@ -77,5 +83,5 @@ public class GameCore : MonoBehaviour
         Application.Quit();
     }
 
-
+   
 }

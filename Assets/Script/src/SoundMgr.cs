@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundMgr : MonoBehaviour
 {
+    public static SoundMgr ins;
     [SerializeField] AudioSource[] vfx;
     [SerializeField] AudioSource bgm;
 
@@ -12,8 +13,14 @@ public class SoundMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (ins == null)
+            ins = this;
+        else
+            Destroy(gameObject);
         isBGMPlayed = false;
         GameEvents.instance.triggerSoundEffect += TriggerSoundEffect;
+        DontDestroyOnLoad(gameObject);
+
     }
 
     // Update is called once per frame
@@ -38,6 +45,7 @@ public class SoundMgr : MonoBehaviour
     {
         bgm.Play();
     }
+
 
     private void OnDestroy()
     {
