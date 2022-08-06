@@ -79,6 +79,10 @@ public class Player : MonoBehaviour
         {
             level = Constaint.Level_2;
             GameCore.Instance.PrepareLoadNextScene(level);
+        } else if (level == Constaint.Level_2 && point > Constaint.Pass_Lv2)
+        {
+            level = Constaint.Level_3;
+            GameCore.Instance.PrepareLoadNextScene(level);
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -9,6 +10,7 @@ public class UIController : MonoBehaviour
     public GameObject CookingAreaPanel;
     public GameObject GameoverAreaPanel;
     public GameObject GamestartAreaPanel;
+    public Text guidePopup;
     public Text point;
 
     private bool isOver;
@@ -41,10 +43,12 @@ public class UIController : MonoBehaviour
 
         GameEvents.instance.alertOver += setOver;
         GameEvents.instance.cookingAreaMenu += TriggerCookingPopup;
+
     }
 
     private void Update()
     {
+      
         point.text = "Money: " + GameCore.Instance.point;
         if (isOver)
         {
@@ -52,12 +56,20 @@ public class UIController : MonoBehaviour
             //do st
         }
         if (Shop.activeInHierarchy)
-            keyShop = true;
-        else
-            keyShop = false;
-
-        if(onBuyTableObject)
         {
+            keyShop = true;
+        }
+
+        else
+        {
+            keyShop = false;
+        }
+
+        if (GameEvents.isPause)
+            return;
+        if (onBuyTableObject)
+        {
+            StartCoroutine(HideGuidePopup());
             Shop.SetActive(false);
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0.8f;
@@ -77,7 +89,6 @@ public class UIController : MonoBehaviour
                         return;
                     } else 
                     {
-                        
                         Instantiate(Table, pos, transform.rotation);
                         Player.instance.point -= Constaint.Table_value;
                         onBuyTableObject = false;
@@ -125,12 +136,10 @@ public class UIController : MonoBehaviour
         if (!keyShop)
         {
             Shop.SetActive(true);
-            GameEvents.isPause = true;
         }
         else
         {
             Shop.SetActive(false);
-            GameEvents.isPause = false;
         }
     }
 
@@ -142,7 +151,20 @@ public class UIController : MonoBehaviour
         } else
         {
             onBuyTableObject = true;
+            ShowGuidePopup("Click to place table to the groud");
         }
+    }
+
+    IEnumerator HideGuidePopup()
+    {
+        yield return new WaitForSeconds(3);
+        guidePopup.text = "";
+    }
+
+    public void ShowGuidePopup(string message)
+    {
+        guidePopup.text = message;
+        
     }
 
     private void OnDestroy()

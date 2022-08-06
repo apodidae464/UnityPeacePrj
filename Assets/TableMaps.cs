@@ -6,9 +6,11 @@ public class TableMaps : MonoBehaviour
 {
 
     public GameObject Table;
+    public List<Table> listTable;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame

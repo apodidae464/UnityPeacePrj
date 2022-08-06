@@ -7,7 +7,7 @@ public class Constaint
     public static string Level_1 = "Start";
     public static int Pass_Lv1 = 1;
     public static string Level_2 = "Level_2";
-    public static int Pass_Lv2 = 11;
+    public static int Pass_Lv2 = 5;
     public static string Level_3 = "Level_3";
     public static int Pass_Lv3 = 121;
 

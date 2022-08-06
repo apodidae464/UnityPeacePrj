@@ -67,7 +67,7 @@ public class GameCore : MonoBehaviour
         
     }
 
-public void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene("Start");
     }

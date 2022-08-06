@@ -23,6 +23,7 @@ public class Table : MonoBehaviour
         shouldActiveCustomer = true;
         cc = Instantiate(customer, transform.GetChild(0).gameObject.transform.position, transform.rotation);
         cc.SetActive(false);
+        position = transform.position;
 
     }
 
@@ -37,7 +38,6 @@ public class Table : MonoBehaviour
             return;
         if (GameEvents.isPause)
             return;
-        position = this.transform.position;
         if (shouldActiveCustomer)
         {
             spawnDuration -= Time.deltaTime;

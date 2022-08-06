@@ -128,6 +128,10 @@ public class GameEvents : MonoBehaviour
     {
         triggerSoundEffect?.Invoke(value);
     }
+
+    //guide popup
+
+    
 }
 
 
