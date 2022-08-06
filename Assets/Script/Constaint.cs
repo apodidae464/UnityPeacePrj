@@ -57,7 +57,7 @@ public class Constaint
     public static float PlayerSpeed = 5.0f;
     public static float CameraSmoothSpeed = 2.0f;
 
-    public static float MaxHeal = 10f;
+    public static float MaxHeal = 4f;
     public static float CustomerReduceHealt = 0.05f;
     public static float CustomerIncreaseHealt = 1f;
     public static float UnHappyPoint = 1;

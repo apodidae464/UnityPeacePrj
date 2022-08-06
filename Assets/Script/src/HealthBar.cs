@@ -22,10 +22,10 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
 		slider = this.GetComponent<Slider>();
-		slider.maxValue = 2;
-		slider.value = 2;
+		slider.maxValue = Constaint.MaxHeal;
+		slider.value = Constaint.MaxHeal;
 		fill.color = gradient.Evaluate(1f);
-		currentHeal = 2;
+		currentHeal = Constaint.MaxHeal;
 
 		GameEvents.instance.OnIncreaseHealBarByCustomer += MoodIndexIncreaseByCustomer;
 		GameEvents.instance.OnDecreaseHealBarByCustomer += MoodIndexDecreaseByCustomer;
@@ -43,12 +43,10 @@ public class HealthBar : MonoBehaviour
     {
 		if (GameEvents.isPause)
 			return;
-		//currentHeal = Constaint.MaxHeal;
+
 		if (currentHeal <= 0)
 		{
 			GameEvents.instance.AlertGameOver();
-			//GameOver BLOOM!
-			//GameCore.Instance.Restart();
 		} 
 		
 		if (currentHeal > Constaint.MaxHeal)
