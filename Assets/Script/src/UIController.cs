@@ -58,17 +58,19 @@ public class UIController : MonoBehaviour
         if (Shop.activeInHierarchy)
         {
             keyShop = true;
+            GameEvents.isPause = true;
+               
         }
-
         else
         {
             keyShop = false;
-        }
 
-        if (GameEvents.isPause)
-            return;
+        }
+        
         if (onBuyTableObject)
         {
+            GameEvents.isPause = true;
+
             StartCoroutine(HideGuidePopup());
             Shop.SetActive(false);
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -83,7 +85,6 @@ public class UIController : MonoBehaviour
 
                     if (hit.collider != null && hit.collider.tag != null)
                     {
-                        GameEvents.isPause = false;
                         onBuyTableObject = false;
 
                         return;
@@ -92,10 +93,10 @@ public class UIController : MonoBehaviour
                         Instantiate(Table, pos, transform.rotation);
                         Player.instance.point -= Constaint.Table_value;
                         onBuyTableObject = false;
-                        GameEvents.isPause = false;
                     }
-                        
-                    
+                    GameEvents.isPause = false;
+
+
                 }
             }
         }

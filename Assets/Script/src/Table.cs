@@ -36,8 +36,7 @@ public class Table : MonoBehaviour
     {
         if (!GameEvents.isStart)
             return;
-        if (GameEvents.isPause)
-            return;
+       
         if (shouldActiveCustomer)
         {
             spawnDuration -= Time.deltaTime;
