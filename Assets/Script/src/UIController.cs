@@ -88,7 +88,8 @@ public class UIController : MonoBehaviour
                     if (hit.collider != null && hit.collider.tag != null)
                     {
                         onBuyTableObject = false;
-
+                        GameEvents.isPause = false;
+                        ShowGuidePopup("CAN PLACE TABLE HERE!! ");
                         return;
                     } else 
                     {

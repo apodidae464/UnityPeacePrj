@@ -15,7 +15,6 @@ public class GameCore : MonoBehaviour
     public float waitToLoad = 1;
     private bool shouldLoadAfterFade;
     private string nextScene;
-    
 
     private void Awake()
     {
@@ -41,21 +40,20 @@ public class GameCore : MonoBehaviour
             waitToLoad -= Time.deltaTime;
             if(waitToLoad <= 0)
             {
+                waitToLoad = 1;
                 shouldLoadAfterFade = false;
                 UIFade.instance.FadeFromBlack();
                 LoadNextScene(nextScene);
             }
         }
+
+        
     }
 
-    public void ActiveFade()
-    {
-        uiFade.SetActive(true);
-    }
 
     public void PrepareLoadNextScene(string scene)
     {
-        ActiveFade();
+        uiFade.SetActive(true);
         UIFade.instance.FadeToBlack();
         shouldLoadAfterFade = true;
         nextScene = scene;
@@ -63,6 +61,7 @@ public class GameCore : MonoBehaviour
 
     public void LoadNextScene(string scene)
     {
+        Player.instance.ResetInventory();
         GameEvents.instance.AlertNextLevel();
         SceneManager.LoadScene(scene);
     }

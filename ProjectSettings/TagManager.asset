@@ -15,6 +15,7 @@ TagManager:
   - Menu
   - NextLevel
   - Table
+  - Enemy
   layers:
   - Default
   - TransparentFX

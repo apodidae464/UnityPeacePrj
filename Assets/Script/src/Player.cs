@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     bool canGiveFood;
 
     public string level;
+    public int levelPlus;
     public int point;
 
     private void Awake()
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         GameEvents.instance.resetInventory += ResetInventory;
         GameEvents.instance.resetGame += OnResetGame;
         level = Constaint.Level_1;
+        levelPlus = 1;
         point = 0;
        /* level = PlayerPrefs.GetString("Level");
         if(level == "")
@@ -82,10 +84,12 @@ public class Player : MonoBehaviour
         if (level == Constaint.Level_1 && point > Constaint.Pass_Lv1)
         {
             level = Constaint.Level_2;
+            levelPlus++;
             GameCore.Instance.PrepareLoadNextScene(level);
         } else if (level == Constaint.Level_2 && point > Constaint.Pass_Lv2)
         {
             level = Constaint.Level_3;
+            levelPlus++;
             GameCore.Instance.PrepareLoadNextScene(level);
         }
     }

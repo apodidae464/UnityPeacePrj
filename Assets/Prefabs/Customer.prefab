@@ -4849,7 +4849,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5392635289811242347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -4912,8 +4912,10 @@ MonoBehaviour:
   PlayerOrderFood:
     name: 
     image: {fileID: 0}
-  OrderPopup: {fileID: 2295336060921859959, guid: 5e97afd71cc462a41b224ffae3dac0cc,
-    type: 3}
+  OrderPopup:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   firstPopup: {fileID: 723089240651102635}
   endPopup: {fileID: 219041648937434497}
   _FoodPopUpList: []

@@ -1154,6 +1154,7 @@ MonoBehaviour:
   numOfCustommer: 0
   point: 0
   waitToLoad: 1
+  gameLevel: 0
 --- !u!114 &932951293
 MonoBehaviour:
   m_ObjectHideFlags: 0
