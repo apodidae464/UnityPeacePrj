@@ -56,9 +56,9 @@ public class TableInstance : MonoBehaviour
             tableList = new List<Vector3>();
         if(tableList.Count >0)
             tableList.Clear();
-        tableList.Add(new Vector3(Constaint.beginTablePos1_x, Constaint.beginTablePos1_y, 0.8f));
-        tableList.Add(new Vector3(Constaint.beginTablePos2_x, Constaint.beginTablePos2_y, 0.8f));
-        tableList.Add(new Vector3(Constaint.beginTablePos3_x, Constaint.beginTablePos3_y, 0.8f));
+        tableList.Add(new Vector3(Consts.beginTablePos1_x, Consts.beginTablePos1_y, 0.8f));
+        tableList.Add(new Vector3(Consts.beginTablePos2_x, Consts.beginTablePos2_y, 0.8f));
+        tableList.Add(new Vector3(Consts.beginTablePos3_x, Consts.beginTablePos3_y, 0.8f));
     }
 
     private void OnDestroy()

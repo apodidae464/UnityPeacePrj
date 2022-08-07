@@ -10,16 +10,16 @@ public class Popup : MonoBehaviour
         _foodType = foodType;
         GetComponent<SpriteRenderer>().sprite = _foodType.image;
         this.transform.GetChild(0).gameObject.GetComponent <TextMesh>().text = _foodType.name;
-        if (_foodType.name == Constaint.Food_0)
+        if (_foodType.name == Consts.Food_0)
         {
-            valueDollas = Constaint.Food_0_Value;
+            valueDollas = Consts.Food_0_Value;
         }
-        else if (_foodType.name == Constaint.Food_1)
+        else if (_foodType.name == Consts.Food_1)
         {
-            valueDollas = Constaint.Food_1_Value;
+            valueDollas = Consts.Food_1_Value;
         }
         else
-            valueDollas = Constaint.Food_2_Value;
+            valueDollas = Consts.Food_2_Value;
 
     }
 }

@@ -12,12 +12,12 @@ public class GreenObj : MonoBehaviour
     private void inRange()
     {
         StartCoroutine(WaitSomeSecond(1));
-        GameEvents.instance.HealBarIncrease(Constaint.HealerValue * 0.01f);
+        GameEvents.instance.HealBarIncrease(Consts.HealerValue * 0.01f);
     }
 
     private void Update()
     {
-        if (Vector2.Distance(Player.instance.GetPosition(), gameObject.transform.position) <= Constaint.GreenObjGizmosRange)
+        if (Vector2.Distance(Player.instance.GetPosition(), gameObject.transform.position) <= Consts.GreenObjGizmosRange)
         {
             isInrange = true;
         }
@@ -36,7 +36,7 @@ public class GreenObj : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, Constaint.GreenObjGizmosRange);
+        Gizmos.DrawWireSphere(transform.position, Consts.GreenObjGizmosRange);
     }
 
     private IEnumerator WaitSomeSecond(int value)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Constaint
+public class Consts
 {
 
     //path

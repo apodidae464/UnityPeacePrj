@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         GameEvents.instance.givingFood += OnGivingFood;
         GameEvents.instance.resetInventory += ResetInventory;
         GameEvents.instance.resetGame += OnResetGame;
-        level = Constaint.Level_1;
+        level = Consts.Level_1;
         levelPlus = 1;
         point = 0;
        /* level = PlayerPrefs.GetString("Level");
@@ -75,20 +75,20 @@ public class Player : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, Constaint.PlayerGizmosRange);
+        Gizmos.DrawWireSphere(transform.position, Consts.PlayerGizmosRange);
     }
 
     private void Update()
     {
         GameCore.Instance.point = point;
-        if (level == Constaint.Level_1 && point > Constaint.Pass_Lv1)
+        if (level == Consts.Level_1 && point > Consts.Pass_Lv1)
         {
-            level = Constaint.Level_2;
+            level = Consts.Level_2;
             levelPlus++;
             GameCore.Instance.PrepareLoadNextScene(level);
-        } else if (level == Constaint.Level_2 && point > Constaint.Pass_Lv2)
+        } else if (level == Consts.Level_2 && point > Consts.Pass_Lv2)
         {
-            level = Constaint.Level_3;
+            level = Consts.Level_3;
             levelPlus++;
             GameCore.Instance.PrepareLoadNextScene(level);
         }
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         {
             case 0:
                 g = Instantiate(food);
-                g.tag = Constaint.PlayerFood;
+                g.tag = Consts.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[0].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 
             case 1:
                 g = Instantiate(food);
-                g.tag = Constaint.PlayerFood;
+                g.tag = Consts.PlayerFood;
                 InventoryPlayerList.Add(g);
                 InventoryPlayerList[1].transform.SetParent(this.transform);
                 InventoryPlayerList[0].transform.position = InventoryFoodTranform[0].position;
@@ -184,12 +184,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == Constaint.CookingArea)
+        if(collision.tag == Consts.CookingArea)
         {
             canPickFood = true;
         }
         
-        if(collision.tag == Constaint.Customer)
+        if(collision.tag == Consts.Customer)
         {
             canGiveFood = true;
         }    
@@ -202,25 +202,25 @@ public class Player : MonoBehaviour
 
     private void addPoint(string name)
     {
-        if (name == Constaint.Food_0)
+        if (name == Consts.Food_0)
         {
-            point += Constaint.Food_0_Value;
+            point += Consts.Food_0_Value;
         }
-        else if (name == Constaint.Food_1)
+        else if (name == Consts.Food_1)
         {
-            point += Constaint.Food_1_Value;
+            point += Consts.Food_1_Value;
         }
         else
-            point += Constaint.Food_2_Value;
+            point += Consts.Food_2_Value;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == Constaint.CookingArea)
+        if (collision.tag == Consts.CookingArea)
         {
             canPickFood = false;
         }
-        if (collision.tag == Constaint.Customer)
+        if (collision.tag == Consts.Customer)
         {
             canGiveFood = false;
         }
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
     public void OnResetGame()
     {
         point = 0;
-        level = Constaint.Level_1;
+        level = Consts.Level_1;
     }
 
     private void OnDestroy()

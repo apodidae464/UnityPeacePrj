@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Player.instance.level != Constaint.Level_1)
+        if (Player.instance.level != Consts.Level_1)
             GameEvents.isStart = true;
         if (!GameEvents.isStart)
             return;
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void moveCharacter(Vector2 direction)
     {
-        player.Translate(direction * Constaint.PlayerSpeed * Time.deltaTime);
+        player.Translate(direction * Consts.PlayerSpeed * Time.deltaTime);
        // GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_walking); will trigger at animation
     }
 

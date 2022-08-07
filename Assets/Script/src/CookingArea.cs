@@ -162,7 +162,7 @@ public class CookingArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == Constaint.Player)
+        if(collision.tag == Consts.Player)
         {
             canClickFood = true;
         }
@@ -170,7 +170,7 @@ public class CookingArea : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == Constaint.Player)
+        if (collision.tag == Consts.Player)
         {
             canClickFood = false;
         }

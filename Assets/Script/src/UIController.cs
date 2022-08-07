@@ -88,14 +88,12 @@ public class UIController : MonoBehaviour
                     if (hit.collider != null && hit.collider.tag != null)
                     {
                         onBuyTableObject = false;
-                        GameEvents.isPause = false;
                         ShowGuidePopup("CAN PLACE TABLE HERE!! ");
-                        return;
                     } else 
                     {
                         Instantiate(Table, pos, transform.rotation);
                         GameEvents.instance.AddTableToData(pos.x, pos.y);
-                        Player.instance.point -= Constaint.Table_value;
+                        Player.instance.point -= Consts.Table_value;
                         onBuyTableObject = false;
                     }
                     GameEvents.isPause = false;
@@ -147,6 +145,7 @@ public class UIController : MonoBehaviour
         else
         {
             Shop.SetActive(false);
+            onBuyTableObject = false;
             GameEvents.isPause = false;
 
         }
@@ -154,7 +153,7 @@ public class UIController : MonoBehaviour
 
     public void BuyInstanceTable()
     {
-        if(GameCore.Instance.point < Constaint.Table_value)
+        if(GameCore.Instance.point < Consts.Table_value)
         {
             onBuyTableObject = false;
             return;

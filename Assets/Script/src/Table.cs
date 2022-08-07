@@ -23,17 +23,14 @@ public class Table : MonoBehaviour
     private void Start()
     {
         canSpawn = false;
-        spawnDuration = Random.Range(Constaint.minWaitingTimeCCSpawn, Constaint.maxWaitingTimeCCSpawn);
+        spawnDuration = Random.Range(Consts.minWaitingTimeCCSpawn, Consts.maxWaitingTimeCCSpawn);
         shouldActiveCustomer = true;
         shouldSpawnEnemy = false;
         cc = Instantiate(customer, transform.GetChild(0).gameObject.transform.position, transform.rotation);
         cc.SetActive(false);
         position = transform.position;
-        if(Player.instance.levelPlus > 3)
-        {
-            shouldSpawnEnemy = true;
-            EnemySpawnDuration = Random.Range(3, 5);
-        }
+        EnemySpawnDuration = Random.Range(3, 5);
+        
     }
 
 
@@ -56,12 +53,12 @@ public class Table : MonoBehaviour
 
         if (inActive && !cc.activeInHierarchy)
         {
-            spawnDuration = Random.Range(Constaint.minWaitingTimeCCSpawn, Constaint.maxWaitingTimeCCSpawn);
+            spawnDuration = Random.Range(Consts.minWaitingTimeCCSpawn, Consts.maxWaitingTimeCCSpawn);
             shouldActiveCustomer = true;
             inActive = false;
         }
 
-        if(shouldSpawnEnemy)
+        if(Player.instance.levelPlus > 2 && shouldSpawnEnemy)
         {
             enemy.SetActive(true);
             shouldSpawnEnemy = false;
@@ -72,7 +69,7 @@ public class Table : MonoBehaviour
             EnemySpawnDuration -= Time.deltaTime;
             if(EnemySpawnDuration < 0)
             {
-                shouldSpawnEnemy = false;
+                shouldSpawnEnemy = true;
                 EnemySpawnDuration = Random.Range(3, 5);
             }
         }
@@ -88,11 +85,6 @@ public class Table : MonoBehaviour
             canSpawn = false;
             inActive = true;
         }
-    }
-
-    private void OnActiveCustomer(bool value)
-    {
-        shouldActiveCustomer = value;
     }
 
     private void OnDestroy()

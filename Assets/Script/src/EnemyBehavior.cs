@@ -34,7 +34,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         Debug.Log("DECREASE HEALL");
 
-        GameEvents.instance.HealBarDecrease(Constaint.CustomerReduceHealt * 3);
+        GameEvents.instance.HealBarDecrease(Consts.CustomerReduceHealt * 3);
 
     }
     IEnumerator decreaseHealOfPlayer()

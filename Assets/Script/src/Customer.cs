@@ -79,7 +79,7 @@ public class Customer : MonoBehaviour
 
     private IEnumerator ShowEndPopupCoroutine()
     {
-        GameEvents.instance.OnTriggerSoundEffect(Constaint.Vfx_finish);
+        GameEvents.instance.OnTriggerSoundEffect(Consts.Vfx_finish);
         endPopup.SetActive(true);
         yield return new WaitForSeconds(3);
 
@@ -106,7 +106,7 @@ public class Customer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == Constaint.Player)
+        if(collision.tag == Consts.Player)
         {
             canTrigger = true;
         }    
@@ -114,7 +114,7 @@ public class Customer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == Constaint.Player)
+        if (collision.tag == Consts.Player)
         {
             canTrigger = false;
         }
