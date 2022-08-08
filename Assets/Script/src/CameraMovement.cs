@@ -18,15 +18,8 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if(transform.position.y >= 2.853675f)
-        {
-            //transform.position = Vector3.Lerp(transform.position, new Vector3(taget.position.x, taget.position.y, transform.position.z), smoothSpeed * Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, 2.85f, transform.position.z);
-        }
-        else
-        {
+
              transform.position = Vector3.Lerp(transform.position, new Vector3(taget.position.x, taget.position.y, transform.position.z), smoothSpeed * Time.deltaTime);
-        }
 
     }
 
