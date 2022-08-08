@@ -19,6 +19,7 @@ public class Customer : MonoBehaviour
     bool fistActive = false;
     private void Awake()
     {
+        LoadFoodDatatoList();
     }
 
     private void Start()
@@ -31,10 +32,10 @@ public class Customer : MonoBehaviour
         if (!fistActive)
         {
 
-            LoadFoodDatatoList();
-            for (int i = 0; i < _FoodPopUpList.Count; i++)
+            for (int i = 0; i < OrderPopup.Length; i++)
             {
-                OrderPopup[i] = Instantiate(_FoodPopUpList[i]) as GameObject;
+                temp = Random.Range(0, foodData.FoodTypeList.Count);
+                OrderPopup[i] = Instantiate(_FoodPopUpList[temp]) as GameObject;
                 OrderPopup[i].transform.SetParent(this.transform);
                 OrderPopup[i].transform.position = firstPopup.transform.position;
                 OrderPopup[i].SetActive(false);
@@ -47,7 +48,7 @@ public class Customer : MonoBehaviour
         endPopup.SetActive(false);
         StartCoroutine(ShowFirstPopupCoroutine());
         StartCoroutine(ReduceHealthCoroutine());
-        temp = Random.Range(0, _FoodPopUpList.Count);
+        temp = Random.Range(0, foodData.FoodTypeList.Count);
         isTakenOrder = false;
         PlayerOrderFood.name = _FoodPopUpList[temp].GetComponent<Popup>()._foodType.name;
 

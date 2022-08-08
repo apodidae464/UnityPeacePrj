@@ -16,6 +16,7 @@ TagManager:
   - NextLevel
   - Table
   - Enemy
+  - TableArea
   layers:
   - Default
   - TransparentFX
@@ -50,6 +51,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Collider Debug
+    uniqueID: 1139581955
+    locked: 0
   - name: Background
     uniqueID: 1488819703
     locked: 0
@@ -58,9 +62,6 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2116798723
-    locked: 0
-  - name: Collider Debug
-    uniqueID: 1139581955
     locked: 0
   - name: UI
     uniqueID: 857770571

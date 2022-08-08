@@ -148,6 +148,32 @@ public class CookingArea : MonoBehaviour
         }
     }
 
+    public void CookFood4()
+    {
+        if (instance.numFoodGameObjects < 4)
+            StartCoroutine(CookFood4Coroutine());
+        else
+            Debug.Log("CookingAreaInventoryItems is full");
+    }
+    IEnumerator CookFood4Coroutine()
+    {
+        var foodTypeData = instance.foodData.FoodTypeList.Find(data => data == instance.foodData.FoodTypeList[3]);
+        yield return new WaitForSeconds(1);
+        if (instance.numFoodGameObjects < 4)
+        {
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (!isObjectFull[i])
+                {
+                    creatFood(i, foodTypeData);
+                    break;
+                }
+
+            }
+        }
+    }
+
     private void creatFood(int index, FoodData.FoodType foodTypeData)
     {
         FoodGameObjects[instance.numFoodGameObjects] = Instantiate(instance.foodObj) as GameObject;
