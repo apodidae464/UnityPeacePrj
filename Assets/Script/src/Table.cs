@@ -26,7 +26,8 @@ public class Table : MonoBehaviour
         spawnDuration = Random.Range(Consts.minWaitingTimeCCSpawn, Consts.maxWaitingTimeCCSpawn);
         shouldActiveCustomer = true;
         shouldSpawnEnemy = false;
-        cc = Instantiate(customer, transform.GetChild(0).gameObject.transform.position, transform.rotation);
+        int random = Random.Range(0, 4);
+        cc = Instantiate(customer, transform.GetChild(random).gameObject.transform.position, transform.rotation);
         cc.SetActive(false);
         position = transform.position;
         EnemySpawnDuration = Random.Range(3, 5);
