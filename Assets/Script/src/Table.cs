@@ -81,7 +81,6 @@ public class Table : MonoBehaviour
         if(canSpawn)
         {
             cc.SetActive(true);
-            cc.GetComponent<Customer>().OnCustomerActive();
             GameCore.Instance.numOfCustommer++;
             canSpawn = false;
             inActive = true;

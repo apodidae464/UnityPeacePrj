@@ -45,6 +45,10 @@ public class UIController : MonoBehaviour
         GameEvents.instance.cookingAreaMenu += TriggerCookingPopup;
         GameEvents.instance.resetGame += OnResetGame;
 
+        if(Player.instance.levelPlus == 1)
+        {
+            Shop.SetActive(false);
+        }
 
     }
 

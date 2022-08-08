@@ -29,6 +29,11 @@ public class Customer : MonoBehaviour
         this.transform.GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = customerSprites.FoodTypeList[random].image;
     }
 
+    private void OnEnable()
+    {
+        OnCustomerActive();
+    }
+
     public void OnCustomerActive()
     {
         if (!fistActive)
