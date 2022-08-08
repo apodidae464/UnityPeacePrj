@@ -4980,6 +4980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4736564325513710247}
   - component: {fileID: 7953586075885349950}
+  - component: {fileID: 6501461656173407248}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Customer
@@ -5051,6 +5052,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6501461656173407248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399355221890030380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c151a08c29d69b4a83d70fd6404b89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7953586075885349950}
+  list:
+  - {fileID: 21300000, guid: 1b7a072da02afa24e868985dc2ef8037, type: 3}
+  - {fileID: 21300000, guid: 11ea2654f5050fb4a951f48d51ca7f2c, type: 3}
 --- !u!1001 &8404615998826682331
 PrefabInstance:
   m_ObjectHideFlags: 0
