@@ -12,6 +12,7 @@ public class Customer : MonoBehaviour
     private bool isTakenOrder = false;
     public List<GameObject> _FoodPopUpList;
     public FoodData foodData;
+    public FoodData customerSprites;
     public GameObject _CustomerPopup;
 
     private int temp;
@@ -24,7 +25,8 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-       
+        temp = Random.Range(0, customerSprites.FoodTypeList.Count);
+        this.transform.GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = customerSprites.FoodTypeList[temp].image;
     }
 
     public void OnCustomerActive()
