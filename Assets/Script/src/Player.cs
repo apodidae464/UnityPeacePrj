@@ -210,8 +210,10 @@ public class Player : MonoBehaviour
         {
             point += Consts.Food_1_Value;
         }
-        else
+        else if(name == Consts.Food_1)
             point += Consts.Food_2_Value;
+        else
+            point += Consts.Food_3_Value;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

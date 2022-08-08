@@ -18,8 +18,10 @@ public class Popup : MonoBehaviour
         {
             valueDollas = Consts.Food_1_Value;
         }
-        else
+        else if(_foodType.name == Consts.Food_2)
             valueDollas = Consts.Food_2_Value;
+        else
+            valueDollas = Consts.Food_3_Value;
 
     }
 }

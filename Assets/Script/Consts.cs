@@ -34,12 +34,14 @@ public class Consts
     public static string Table = "Table";
 
     //food
-    public static string Food_0 = "Cheese";
+    public static string Food_0 = "Americano";
     public static int Food_0_Value = 1;
-    public static string Food_1 = "Banana";
+    public static string Food_1 = "Mixed Rice";
     public static int Food_1_Value = 2;
-    public static string Food_2 = "Sauce";
+    public static string Food_2 = "Cheese Cake";
     public static int Food_2_Value = 3;
+    public static string Food_3 = "Tea";
+    public static int Food_3_Value = 4;
 
     //shop
     public static int Table_value = 1;
