@@ -33,11 +33,9 @@ public class Customer : MonoBehaviour
     {
         if (!fistActive)
         {
-
-            for (int i = 0; i < OrderPopup.Length; i++)
+            for (int i = 0; i < _FoodPopUpList.Count; i++)
             {
-                int random = Random.Range(0, foodData.FoodTypeList.Count);
-                OrderPopup[i] = Instantiate(_FoodPopUpList[random]) as GameObject;
+                OrderPopup[i] = Instantiate(_FoodPopUpList[i]) as GameObject;
                 OrderPopup[i].transform.SetParent(this.transform);
                 OrderPopup[i].transform.position = firstPopup.transform.position;
                 OrderPopup[i].SetActive(false);
