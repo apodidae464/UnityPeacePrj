@@ -25,8 +25,8 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-        temp = Random.Range(0, customerSprites.FoodTypeList.Count);
-        this.transform.GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = customerSprites.FoodTypeList[temp].image;
+        int random = Random.Range(0, customerSprites.FoodTypeList.Count);
+        this.transform.GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = customerSprites.FoodTypeList[random].image;
     }
 
     public void OnCustomerActive()
@@ -36,8 +36,8 @@ public class Customer : MonoBehaviour
 
             for (int i = 0; i < OrderPopup.Length; i++)
             {
-                temp = Random.Range(0, foodData.FoodTypeList.Count);
-                OrderPopup[i] = Instantiate(_FoodPopUpList[temp]) as GameObject;
+                int random = Random.Range(0, foodData.FoodTypeList.Count);
+                OrderPopup[i] = Instantiate(_FoodPopUpList[random]) as GameObject;
                 OrderPopup[i].transform.SetParent(this.transform);
                 OrderPopup[i].transform.position = firstPopup.transform.position;
                 OrderPopup[i].SetActive(false);
